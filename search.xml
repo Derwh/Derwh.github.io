@@ -14,4 +14,16 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>firstMd</title>
+    <url>/2020/06/20/first/</url>
+    <content><![CDATA[<h3 id="My-First-Blog"><a href="#My-First-Blog" class="headerlink" title="My First Blog"></a>My First Blog</h3><p>welcome to my world</p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>first</tag>
+      </tags>
+  </entry>
 </search>
