@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://derwh.github.io/"/>
-  <updated>2020-09-15T09:16:47.916Z</updated>
+  <updated>2020-10-08T08:26:20.849Z</updated>
   <id>https://derwh.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>java网络编程(一)</title>
-    <link href="https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/"/>
-    <id>https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</id>
-    <published>2020-10-04T07:25:14.613Z</published>
-    <updated>2020-09-15T09:16:47.916Z</updated>
+    <title>前端---HTML</title>
+    <link href="https://derwh.github.io/2020/10/06/%E5%89%8D%E7%AB%AF---HTML/"/>
+    <id>https://derwh.github.io/2020/10/06/%E5%89%8D%E7%AB%AF---HTML/</id>
+    <published>2020-10-06T01:35:11.410Z</published>
+    <updated>2020-10-08T08:26:20.849Z</updated>
     
     <summary type="html">
     
@@ -29,27 +29,26 @@
       
         
         
-          &lt;h1 id=&quot;java网络编程&quot;&gt;&lt;a href=&quot;#java网络编程&quot; class=&quot;headerlink&quot; title=&quot;java网络编程&quot;&gt;&lt;/a&gt;java网络编程&lt;/h1&gt;&lt;p&gt;学习java网络编程时的知识点&lt;/p&gt;
-&lt;h3
+          &lt;h1 id=&quot;前端三把斧&quot;&gt;&lt;a href=&quot;#前端三把斧&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
+      <category term="前端" scheme="https://Derwh.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="JAVA" scheme="https://Derwh.github.io/tags/JAVA/"/>
+      <category term="HTML" scheme="https://Derwh.github.io/tags/HTML/"/>
     
   </entry>
   
   <entry>
-    <title>java网络编程(一)</title>
-    <link href="https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/"/>
-    <id>https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/</id>
-    <published>2020-10-04T07:25:14.587Z</published>
-    <updated>2020-09-20T03:16:12.593Z</updated>
+    <title>java网络编程(基础)</title>
+    <link href="https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/"/>
+    <id>https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%B8%80)/</id>
+    <published>2020-10-04T07:25:14.613Z</published>
+    <updated>2020-10-08T08:04:46.959Z</updated>
     
     <summary type="html">
     
@@ -57,8 +56,8 @@
       
         
         
-          &lt;h1 id=&quot;java网络编程&quot;&gt;&lt;a href=&quot;#java网络编程&quot; class=&quot;headerlink&quot; title=&quot;java网络编程&quot;&gt;&lt;/a&gt;java网络编程&lt;/h1&gt;&lt;p&gt;学习java网络编程时的知识点&lt;/p&gt;
-&lt;h3
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;JAVA编程基础&lt;/p&gt;
+&lt;h1 id=&quot;简单API调用—Get请求-无参数&quot;&gt;&lt;a
         
       
     
@@ -68,7 +67,35 @@
       <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
     
     
-      <category term="JAVA" scheme="https://Derwh.github.io/tags/JAVA/"/>
+      <category term="JAVA网络编程" scheme="https://Derwh.github.io/tags/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java网络编程(进阶)</title>
+    <link href="https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/"/>
+    <id>https://derwh.github.io/2020/10/04/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B(%E4%BA%8C)/</id>
+    <published>2020-10-04T07:25:14.587Z</published>
+    <updated>2020-10-08T08:06:51.536Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;java网络编程&quot;&gt;&lt;a href=&quot;#java网络编程&quot; class=&quot;headerlink&quot; title=&quot;java网络编程&quot;&gt;&lt;/a&gt;java网络编程&lt;/h1&gt;&lt;p&gt;JAVA网络编程进阶&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
+    
+    
+      <category term="JAVA网络编程" scheme="https://Derwh.github.io/tags/JAVA%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -77,7 +104,7 @@
     <link href="https://derwh.github.io/2020/09/22/%E5%85%B3%E4%BA%8E%E5%BC%82%E5%B8%B8%E7%B1%BB/"/>
     <id>https://derwh.github.io/2020/09/22/%E5%85%B3%E4%BA%8E%E5%BC%82%E5%B8%B8%E7%B1%BB/</id>
     <published>2020-09-22T12:52:32.776Z</published>
-    <updated>2020-10-03T01:49:17.887Z</updated>
+    <updated>2020-10-08T08:28:23.995Z</updated>
     
     <summary type="html">
     
@@ -95,16 +122,16 @@
       <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
     
     
-      <category term="JAVA 异常" scheme="https://Derwh.github.io/tags/JAVA-%E5%BC%82%E5%B8%B8/"/>
+      <category term="异常" scheme="https://Derwh.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
     
   </entry>
   
   <entry>
-    <title>java面向对象方面知识点(四)</title>
-    <link href="https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E5%9B%9B)/"/>
-    <id>https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E5%9B%9B)/</id>
-    <published>2020-08-20T03:00:01.296Z</published>
-    <updated>2020-08-20T03:15:01.648Z</updated>
+    <title>python基础(一)</title>
+    <link href="https://derwh.github.io/2020/09/13/python%E5%9F%BA%E7%A1%80(%E4%B8%80)/"/>
+    <id>https://derwh.github.io/2020/09/13/python%E5%9F%BA%E7%A1%80(%E4%B8%80)/</id>
+    <published>2020-09-13T09:59:45.245Z</published>
+    <updated>2020-10-08T08:09:49.999Z</updated>
     
     <summary type="html">
     
@@ -112,26 +139,27 @@
       
         
         
-          &lt;h1 id=&quot;java面向对象方面知识点-四&quot;&gt;&lt;a href=&quot;#java面向对象方面知识点-四&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;字符串，列表操作&lt;/p&gt;
+&lt;h1 id=&quot;数字和字符串操作&quot;&gt;&lt;a href=&quot;#数字和字符串操作&quot;
         
       
     
     </summary>
     
     
-      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
+      <category term="python" scheme="https://Derwh.github.io/categories/python/"/>
     
     
-      <category term="JAVA" scheme="https://Derwh.github.io/tags/JAVA/"/>
+      <category term="python" scheme="https://Derwh.github.io/tags/python/"/>
     
   </entry>
   
   <entry>
-    <title>java面向对象方面知识点(三)</title>
-    <link href="https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%89)/"/>
-    <id>https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%89)/</id>
-    <published>2020-08-20T01:41:11.843Z</published>
-    <updated>2020-08-20T02:53:14.712Z</updated>
+    <title>java面向对象方面知识点(四)</title>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E5%9B%9B)/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E5%9B%9B)/</id>
+    <published>2020-09-13T09:59:45.223Z</published>
+    <updated>2020-10-08T08:17:19.419Z</updated>
     
     <summary type="html">
     
@@ -139,7 +167,8 @@
       
         
         
-          &lt;h1 id=&quot;java面向对象方面知识点-三&quot;&gt;&lt;a href=&quot;#java面向对象方面知识点-三&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;集合&lt;/p&gt;
+&lt;h1 id=&quot;排序&quot;&gt;&lt;a href=&quot;#排序&quot; class=&quot;headerlink&quot;
         
       
     
@@ -155,10 +184,10 @@
   
   <entry>
     <title>java面向对象方面知识点(二)</title>
-    <link href="https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%BA%8C)/"/>
-    <id>https://derwh.github.io/2020/08/20/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%BA%8C)/</id>
-    <published>2020-08-20T00:18:44.987Z</published>
-    <updated>2020-08-20T01:40:33.969Z</updated>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%BA%8C)/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%BA%8C)/</id>
+    <published>2020-09-13T09:59:45.163Z</published>
+    <updated>2020-10-08T08:13:39.482Z</updated>
     
     <summary type="html">
     
@@ -166,7 +195,8 @@
       
         
         
-          &lt;h1 id=&quot;java面向对象方面知识点-二&quot;&gt;&lt;a href=&quot;#java面向对象方面知识点-二&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;接口，异常&lt;/p&gt;
+&lt;h1 id=&quot;接口&quot;&gt;&lt;a href=&quot;#接口&quot; class=&quot;headerlink&quot;
         
       
     
@@ -181,11 +211,11 @@
   </entry>
   
   <entry>
-    <title>python基础(二)</title>
-    <link href="https://derwh.github.io/2020/08/19/python%E5%9F%BA%E7%A1%80(%E4%BA%8C)/"/>
-    <id>https://derwh.github.io/2020/08/19/python%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</id>
-    <published>2020-08-19T08:59:02.744Z</published>
-    <updated>2020-08-20T08:26:32.366Z</updated>
+    <title>java面向对象方面知识点(三)</title>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%89)/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%89)/</id>
+    <published>2020-09-13T09:59:45.140Z</published>
+    <updated>2020-10-08T08:16:08.936Z</updated>
     
     <summary type="html">
     
@@ -193,89 +223,8 @@
       
         
         
-          &lt;h1 id=&quot;python基础知识点-二&quot;&gt;&lt;a href=&quot;#python基础知识点-二&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://Derwh.github.io/categories/python/"/>
-    
-    
-      <category term="python" scheme="https://Derwh.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python基础(一)</title>
-    <link href="https://derwh.github.io/2020/08/19/python%E5%9F%BA%E7%A1%80(%E4%B8%80)/"/>
-    <id>https://derwh.github.io/2020/08/19/python%E5%9F%BA%E7%A1%80(%E4%B8%80)/</id>
-    <published>2020-08-19T07:18:20.690Z</published>
-    <updated>2020-08-19T09:12:44.411Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;python基础知识点-一&quot;&gt;&lt;a href=&quot;#python基础知识点-一&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="https://Derwh.github.io/categories/python/"/>
-    
-    
-      <category term="python" scheme="https://Derwh.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA时间类的运用</title>
-    <link href="https://derwh.github.io/2020/08/19/JAVA%E6%97%B6%E9%97%B4%E7%B1%BB%E7%9A%84%E8%BF%90%E7%94%A8/"/>
-    <id>https://derwh.github.io/2020/08/19/JAVA%E6%97%B6%E9%97%B4%E7%B1%BB%E7%9A%84%E8%BF%90%E7%94%A8/</id>
-    <published>2020-08-19T01:38:13.368Z</published>
-    <updated>2020-08-19T07:24:08.322Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;JAVA时间日期类&quot;&gt;&lt;a href=&quot;#JAVA时间日期类&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
-    
-    
-      <category term="JAVA" scheme="https://Derwh.github.io/tags/JAVA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA字符串</title>
-    <link href="https://derwh.github.io/2020/08/19/JAVA%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    <id>https://derwh.github.io/2020/08/19/JAVA%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
-    <published>2020-08-19T01:21:36.975Z</published>
-    <updated>2020-08-19T01:20:13.390Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;JAVA字符串&quot;&gt;&lt;a href=&quot;#JAVA字符串&quot; class=&quot;headerlink&quot; title=&quot;JAVA字符串&quot;&gt;&lt;/a&gt;JAVA字符串&lt;/h1&gt;&lt;p&gt;记录关于java字符串学习中的要点&lt;/p&gt;
-&lt;h3 id=&quot;调用字符串对象方法&quot;&gt;&lt;a
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;匿名类，内部类，List和数组转换&lt;/p&gt;
+&lt;h1 id=&quot;内部类&quot;&gt;&lt;a href=&quot;#内部类&quot;
         
       
     
@@ -291,10 +240,10 @@
   
   <entry>
     <title>java面向对象方面知识点(一)</title>
-    <link href="https://derwh.github.io/2020/06/22/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%80)/"/>
-    <id>https://derwh.github.io/2020/06/22/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%80)/</id>
-    <published>2020-06-22T06:21:09.516Z</published>
-    <updated>2020-08-20T00:18:06.980Z</updated>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%80)/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86(%E4%B8%80)/</id>
+    <published>2020-09-13T09:59:45.119Z</published>
+    <updated>2020-10-08T08:11:43.885Z</updated>
     
     <summary type="html">
     
@@ -302,7 +251,8 @@
       
         
         
-          &lt;h1 id=&quot;java面向对象方面知识点-一&quot;&gt;&lt;a href=&quot;#java面向对象方面知识点-一&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;构造函数，File类，ArrayList，super&lt;/p&gt;
+&lt;h1 id=&quot;构造函数&quot;&gt;&lt;a
         
       
     
@@ -317,11 +267,11 @@
   </entry>
   
   <entry>
-    <title>firstMd</title>
-    <link href="https://derwh.github.io/2020/06/20/first/"/>
-    <id>https://derwh.github.io/2020/06/20/first/</id>
-    <published>2020-06-20T08:17:40.271Z</published>
-    <updated>2020-06-20T08:17:15.061Z</updated>
+    <title>JAVA时间类的运用</title>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E6%97%B6%E9%97%B4%E7%B1%BB%E7%9A%84%E8%BF%90%E7%94%A8/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E6%97%B6%E9%97%B4%E7%B1%BB%E7%9A%84%E8%BF%90%E7%94%A8/</id>
+    <published>2020-09-13T09:59:45.096Z</published>
+    <updated>2020-10-08T07:56:18.994Z</updated>
     
     <summary type="html">
     
@@ -329,26 +279,27 @@
       
         
         
-          &lt;h3 id=&quot;My-First-Blog&quot;&gt;&lt;a href=&quot;#My-First-Blog&quot; class=&quot;headerlink&quot; title=&quot;My First Blog&quot;&gt;&lt;/a&gt;My First Blog&lt;/h3&gt;&lt;p&gt;welcome to my
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;LocalDate日期类型是java中较为重要的类型，其需要引入特定的包&lt;/p&gt;
+&lt;h1 id=&quot;包的导入&quot;&gt;&lt;a
         
       
     
     </summary>
     
     
-      <category term="日常" scheme="https://Derwh.github.io/categories/%E6%97%A5%E5%B8%B8/"/>
+      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
     
     
-      <category term="first" scheme="https://Derwh.github.io/tags/first/"/>
+      <category term="JAVA时间类" scheme="https://Derwh.github.io/tags/JAVA%E6%97%B6%E9%97%B4%E7%B1%BB/"/>
     
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="https://derwh.github.io/2020/06/18/hello-world/"/>
-    <id>https://derwh.github.io/2020/06/18/hello-world/</id>
-    <published>2020-06-18T09:09:54.528Z</published>
-    <updated>2020-06-20T03:33:51.736Z</updated>
+    <title>JAVA字符串</title>
+    <link href="https://derwh.github.io/2020/09/13/JAVA%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>https://derwh.github.io/2020/09/13/JAVA%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
+    <published>2020-09-13T09:59:45.073Z</published>
+    <updated>2020-10-08T07:58:37.013Z</updated>
     
     <summary type="html">
     
@@ -356,13 +307,18 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;h1 id=&quot;what？&quot;&gt;&lt;a href=&quot;#what？&quot; class=&quot;headerlink&quot; title=&quot;what？&quot;&gt;&lt;/a&gt;what？&lt;/h1&gt;&lt;p&gt;JAVA中的字符串&lt;/p&gt;
+&lt;h1 id=&quot;调用字符串对象方法&quot;&gt;&lt;a href=&quot;#调用字符串对象方法&quot;
         
       
     
     </summary>
     
     
+      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
+    
+    
+      <category term="JAVA字符串" scheme="https://Derwh.github.io/tags/JAVA%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
