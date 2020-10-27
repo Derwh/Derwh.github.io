@@ -700,13 +700,100 @@
 </ul>
 <h6 id="DOM内容"><a href="#DOM内容" class="headerlink" title="DOM内容"></a>DOM内容</h6><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>优课达<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></span><br><span class="line">    优课达</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>youkeda<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>学的比别人好一点<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> divDom = <span class="built_in">document</span>.querySelector(<span class="string">'div#test'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(divDom.outerHTML, divDom.innerHTML, divDom.innerText);</span><br></pre></td></tr></table></figure>
-<p>得到结果：<br>|属性|值|总结|<br>|——-|——-|——-|<br>|outerHTML| \<div id="test">优课达\<p>youkeda\</p>\<p>学的比别人好一点\</p>\</div>|整个DOM的html代码|<br>|innerHTML|优课达\<p>youkeda\</p>\<p>学的比别人好一点\</p>|DOM内部hmtl代码|<br>|innerText|优课达|DOM内部纯文本内容|</p>
+<p>得到结果：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>总结</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>outerHTML</td>
+<td>&lt;div id=”test”&gt;优课达&lt;p&gt;youkeda&lt;/p&gt;&lt;p&gt;学的比别人好一点&lt;/p&gt;&lt;/div&gt;</td>
+<td>整个DOM的html代码</td>
+</tr>
+<tr>
+<td>innerHTML</td>
+<td>优课达&lt;p&gt;youkeda&lt;/p&gt;&lt;p&gt;学的比别人好一点&lt;/p&gt;</td>
+<td>DOM内部hmtl代码</td>
+</tr>
+<tr>
+<td>innerText</td>
+<td>优课达</td>
+<td>DOM内部纯文本内容</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h6 id="亲属"><a href="#亲属" class="headerlink" title="亲属"></a>亲属</h6><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> divDom = <span class="built_in">document</span>.querySelector(<span class="string">'div#test'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(divDom.firstChild, divDom.lastChild);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'-----'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(divDom.childNodes);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'-----'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(divDom.parentNode);</span><br></pre></td></tr></table></figure>
-<p>结果：<br>|属性|值|总结|<br>|——|——|——|<br>|firstChild|优课达|指定节点的第一个子节点|<br>|lastChild|\<p>学的比别人好一点\</p>|指定节点的最后一个子节点|<br>|childNodes|优课达\<p>youkeda\</p>\<p>学的比别人好一点\</p>|指定节点的子节点集合|<br>|parentNodes|\<body>\<div id="test">优课达\<p>youkeda\</p>\<p>学的比别人好一点\</p>\</div>\<script src="./index.js">\</script>\</body>|指定节点在DOM树中的父节点|</p>
+<p>结果：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+<th>总结</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>firstChild</td>
+<td>优课达</td>
+<td>指定节点的第一个子节点</td>
+</tr>
+<tr>
+<td>lastChild</td>
+<td>&lt;p&gt;学的比别人好一点&lt;/p&gt;</td>
+<td>指定节点的最后一个子节点</td>
+</tr>
+<tr>
+<td>childNodes</td>
+<td>优课达&lt;p&gt;youkeda&lt;/p&gt;&lt;p&gt;学的比别人好一点&lt;/p&gt;</td>
+<td>指定节点的子节点集合</td>
+</tr>
+<tr>
+<td>parentNodes</td>
+<td>&lt;body&gt;&lt;div id=”test”&gt;优课达&lt;p&gt;youkeda&lt;/p&gt;&lt;p&gt;学的比别人好一点&lt;/p&gt;&lt;/div&gt;&lt;script src=”./index.js”&gt;&lt;/script&gt;&lt;/body&gt;</td>
+<td>指定节点在DOM树中的父节点</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h5 id="DOM样式"><a href="#DOM样式" class="headerlink" title="DOM样式"></a>DOM样式</h5><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>优课达<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"test youkeda"</span> <span class="attr">style</span>=<span class="string">"color: #FF3300; font-size: 24px;"</span>&gt;</span>优课达<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> h1Dom = <span class="built_in">document</span>.querySelector(<span class="string">'h1'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.classList);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.style);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.style.color);</span><br></pre></td></tr></table></figure>
 <p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/course/f4/9/15.png"></p>
-<p>结果：<br>|属性|类型|值|总结|<br>|——|——|——|——|<br>|classList|DOMTokenList类型数组|[‘test’, ‘youkeda’]|classList数组方式存储所有的class名称|<br>|style|CSSStyleDeclaration|color属性为rgb(255, 51, 0)|对象或字典的方式存储CSSStyle|</p>
+<p>结果：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>值</th>
+<th>总结</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classList</td>
+<td>DOMTokenList类型数组</td>
+<td>[‘test’, ‘youkeda’]</td>
+<td>classList数组方式存储所有的class名称</td>
+</tr>
+<tr>
+<td>style</td>
+<td>CSSStyleDeclaration</td>
+<td>color属性为rgb(255, 51, 0)</td>
+<td>对象或字典的方式存储CSSStyle</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h5 id="DOM数据属性"><a href="#DOM数据属性" class="headerlink" title="DOM数据属性"></a>DOM数据属性</h5><p>HTML提供一种数据属性的标准，利用data-<em>允许我们在标准内存储额外信息<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>优课达<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">article</span> <span class="attr">data-parts</span>=<span class="string">"3"</span> <span class="attr">data-words</span>=<span class="string">"1314"</span> <span class="attr">data-category</span>=<span class="string">"python"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure><br>上述代码中article标签中用data-</em>属性存储了文章的段落，字数，类别信息</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> article = <span class="built_in">document</span>.querySelector(<span class="string">'article'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(article.dataset);</span><br></pre></td></tr></table></figure>
 <p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/course/f4/9/16.png"><br>可以通过js来获取，是key-value集合</p>
@@ -752,7 +839,7 @@
 <tbody>
 <tr>
 <td>target</td>
-<td>\<h1>优课达-学的比别人好一点\</h1></td>
+<td>&lt;h1&gt;优课达-学的比别人好一点&lt;/h1&gt;</td>
 <td>点击事件触发的DOM节点</td>
 </tr>
 <tr>
