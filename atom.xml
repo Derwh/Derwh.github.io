@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://derwh.github.io/"/>
-  <updated>2020-10-17T03:16:08.589Z</updated>
+  <updated>2020-10-27T08:39:06.289Z</updated>
   <id>https://derwh.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端---JavaScript</title>
+    <link href="https://derwh.github.io/2020/10/18/%E5%89%8D%E7%AB%AF---JavaScript/"/>
+    <id>https://derwh.github.io/2020/10/18/%E5%89%8D%E7%AB%AF---JavaScript/</id>
+    <published>2020-10-18T01:49:31.776Z</published>
+    <updated>2020-10-27T08:39:06.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;引入js&quot;&gt;&lt;a href=&quot;#引入js&quot; class=&quot;headerlink&quot; title=&quot;引入js&quot;&gt;&lt;/a&gt;引入js&lt;/h1&gt;&lt;h3 id=&quot;js写在html内部&quot;&gt;&lt;a href=&quot;#js写在html内部&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="前端" scheme="https://Derwh.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="JS" scheme="https://Derwh.github.io/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>前端---CSS(进阶)</title>
