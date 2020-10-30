@@ -982,4 +982,90 @@
         <tag>动态规划</tag>
       </tags>
   </entry>
+  <entry>
+    <title>最长公共子序列</title>
+    <url>/2020/10/30/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>一个字符串A的子串被定义成从A中顺次选出若干个字符构成的串。如A=“cdaad” ,顺次选1，3，5个字符就构成子串” cad” ,现给定两个字符串，求它们的最长共公子串</p>
+<h1 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h1><p>第一行两个字符串用空格分开。两个串的长度均小于2000 。</p>
+<h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><p>最长子串的长度</p>
+<h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">abccd aecd</span><br></pre></td></tr></table></figure>
+<h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>为了得到公共字符个数，需要同时遍历两个字符串，将每一个字符进行比较，判断是否相同。而为了得到总的相同个数，需要将之前的个数记录下来。如果当前位置的两个字符相同，那么此时公共字符个数就是将这两个字符均在其对于字符串去掉之后的公共字符长度+1。即为：c[i][j] = c[i - 1][j - 1] + 1。如果不相等，就将两个字符分别在对于字符串中去掉，检查去掉哪个之后公共字符最多，得到的结果取最大的那个。</p>
+<h2 id="理论实现"><a href="#理论实现" class="headerlink" title="理论实现"></a>理论实现</h2><p>对于样例<br>定义c数组保存公共字符情况，行为第二个字符串，列为第一个字符串</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以得到最长为3</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        String str1 = scanner.next(); <span class="comment">//第一个字符串</span></span><br><span class="line">        String str2 = scanner.next(); <span class="comment">//第二个字符串</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到第一个字符串的字符数组</span></span><br><span class="line">        <span class="keyword">char</span>[] single1 = <span class="keyword">new</span> <span class="keyword">char</span>[str1.length() + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.length(); i++) &#123;</span><br><span class="line">            single1[i] = str1.charAt(i - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//得到第二个字符串的字符数组</span></span><br><span class="line">        <span class="keyword">char</span>[] single2 = <span class="keyword">new</span> <span class="keyword">char</span>[str2.length() + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str2.length(); i++) &#123;</span><br><span class="line">            single2[i] = str2.charAt(i - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[][] c = <span class="keyword">new</span> <span class="keyword">int</span>[single2.length][single1.length]; <span class="comment">//记录公共字符个数，行值为第二个字符数组，列值为第一个字符数组</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 动态规划过程</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; single2.length; i++) &#123; <span class="comment">//遍历两个字符数组，检查相同字符个数</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; single1.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (single2[i] == single1[j]) &#123;</span><br><span class="line">                    c[i][j] = c[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (c[i - <span class="number">1</span>][j] &gt;= c[i][j - <span class="number">1</span>]) &#123;</span><br><span class="line">                        c[i][j] = c[i - <span class="number">1</span>][j];</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        c[i][j] = c[i][j - <span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(c[single2.length - <span class="number">1</span>][single1.length - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="易错点"><a href="#易错点" class="headerlink" title="易错点"></a>易错点</h1><p>注意数组的长度问题，因为标号方便的原因，存储字符的数组是从1开始存储的，后面取用的时候需注意。</p>
+<h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1><p>题目中没有要求输出最长公共子序列，若要输出，则还需定义一个数组b，记录当前c中数字来源情况，比如将两个字符相同的情况记为b[i][j] = 1。后面可以从b中最后一个数字往前推，推导过程中标号为1的地方即为公共字符的地方。</p>
+]]></content>
+      <categories>
+        <category>算法--动态规划</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
 </search>
