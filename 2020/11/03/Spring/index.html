@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spring | Derwh</title><meta name="description" content="Spring核心Spring是java语言必须要掌握的框架，其核心技术点是依赖注入(DI)。使用Spring能大大降低开发难度和助力团队发展，更加强调面向对象。 MavenMaven简介Maven，全称Apache Maven，其是一个项目管理和构建自动化工具，其最被关注的功能是项目构建功能，Maven是必须掌握的工具。Maven提供了一个命令行工具可以把工程打包成java支持的格式(比如jar)"><meta name="keywords" content="Spring"><meta name="author" content="Derwh"><meta name="copyright" content="Derwh"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://derwh.github.io/2020/11/03/Spring/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><meta property="og:type" content="article"><meta property="og:title" content="Spring"><meta property="og:url" content="https://derwh.github.io/2020/11/03/Spring/"><meta property="og:site_name" content="Derwh"><meta property="og:description" content="Spring核心Spring是java语言必须要掌握的框架，其核心技术点是依赖注入(DI)。使用Spring能大大降低开发难度和助力团队发展，更加强调面向对象。 MavenMaven简介Maven，全称Apache Maven，其是一个项目管理和构建自动化工具，其最被关注的功能是项目构建功能，Maven是必须掌握的工具。Maven提供了一个命令行工具可以把工程打包成java支持的格式(比如jar)"><meta property="og:image" content="https://s1.ax1x.com/2020/11/04/Bg0IBT.jpg"><meta property="article:published_time" content="2020-11-03T11:32:39.725Z"><meta property="article:modified_time" content="2020-11-04T14:28:35.549Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="next" title="最长公共子序列" href="https://derwh.github.io/2020/10/30/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: {"text":"I,LOVE,YOU","fontSize":"15px"},
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Derwh" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring核心"><span class="toc-number">1.</span> <span class="toc-text">Spring核心</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven"><span class="toc-number">2.</span> <span class="toc-text">Maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven简介"><span class="toc-number">2.1.</span> <span class="toc-text">Maven简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven安装"><span class="toc-number">2.2.</span> <span class="toc-text">Maven安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven命令"><span class="toc-number">2.3.</span> <span class="toc-text">Maven命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven核心概念"><span class="toc-number">2.4.</span> <span class="toc-text">Maven核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-Project-Object-Model"><span class="toc-number">2.4.1.</span> <span class="toc-text">POM(Project Object Model)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven坐标"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">Maven坐标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven属性配置"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">Maven属性配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven依赖"><span class="toc-number">2.4.1.3.</span> <span class="toc-text">Maven依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#中央仓库"><span class="toc-number">2.4.1.3.1.</span> <span class="toc-text">中央仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#间接依赖"><span class="toc-number">2.4.1.3.2.</span> <span class="toc-text">间接依赖</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Maven插件"><span class="toc-number">2.4.1.4.</span> <span class="toc-text">Maven插件</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一个Spring"><span class="toc-number">3.</span> <span class="toc-text">第一个Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#引入Spring"><span class="toc-number">3.1.</span> <span class="toc-text">引入Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实例"><span class="toc-number">3.2.</span> <span class="toc-text">代码实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向接口编程的理解"><span class="toc-number">3.3.</span> <span class="toc-text">面向接口编程的理解</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://s1.ax1x.com/2020/11/04/Bg0W3n.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Derwh</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Spring</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-11-03 19:32:39"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-11-03</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-11-04 22:28:35"><i class="fas fa-history fa-fw"></i> 更新于 2020-11-04</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/JAVA/">JAVA</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">2.3k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 8 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="Spring核心"><a href="#Spring核心" class="headerlink" title="Spring核心"></a>Spring核心</h1><p>Spring是java语言必须要掌握的框架，其核心技术点是依赖注入(DI)。使用Spring能大大降低开发难度和助力团队发展，更加强调面向对象。</p>
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h2><p>Maven，全称Apache Maven，其是一个项目管理和构建自动化工具，其最被关注的功能是项目构建功能，Maven是必须掌握的工具。Maven提供了一个命令行工具可以把工程打包成java支持的格式(比如jar)，并且支持部署到中央仓库，如此，使用者可以很方便运用别人的代码，只需要添加依赖即可。<br>Maven系统构架图：</p>
+<p><img src = "https://style.youkeda.com/img/ham/course/j4/mvn.svg"></p>
+<p>Maven使用惯例优于配置的原则，在没有定制之前，所有的项目要有如下的结构：   </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${basedir}</td>
+<td>存放pom.xml和所有的子目录</td>
+</tr>
+<tr>
+<td>${basedir}/pom.xml</td>
+<td>Maven项目配置文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/java</td>
+<td>项目的java源代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/resources</td>
+<td>项目的资源，比如property文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/java</td>
+<td>项目的测试类，比如说JUnit代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/resources</td>
+<td>测试使用的资源</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这里的&#36;{basedir}代表的是工程的根路径。一个Maven项目在默认情况下会产生JAR文件，编译后的classes会放在&#36;{basedir}/target/classes下面，JAR文件会放在&#36;{basedir}/target下面。代码位置很重要，放错会导致不能运行！</p>
+<h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>Maven本地安装参考：<a href="https://ham.youkeda.com/articles/detail/5f3759465e205f30b2c2b319" target="_blank" rel="noopener">Maven安装</a></p>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p>这个Maven工具是在命令行(终端软件)里输入指令的方式在执行的，需要掌握以下常见的命令，命令要在工程的根目录下执行。</p>
+<ol>
+<li><p>mvn clean compile<br>编译命令，Maven自动扫描src/main/java下面的代码并完成编译工作，执行完会在根目录下生成target/classes目录。</p>
+</li>
+<li><p>mvn clean package<br>编译并打包命令，其是compile和package的集合，就是说会先执行compile命令，结果会把所有的java文件和资源打包成一个jar格式的压缩包。</p>
+</li>
+<li><p>mvn clean install<br>执行安装命令，其是complie，package和install的集合，就是说会先执行compile命令，再执行打包命令，最后执行安装到本地Maven仓库目录里的命令。这个目录是&#36;{uesr_home}.m2。${user_home}是电脑登录用户名的个人目录。</p>
+</li>
+<li><p>mvn compile exec:java -Dexec.mainClass=${main}<br>命令意思是执行了compile后，执行运行java的命令，具体执行哪个是&#36;{main}这个参数决定的。比如：mvn compile exec:java -Dexec.mainClass=com.youkeda.Test</p>
+</li>
+</ol>
+<p>上述命令在idea上可能无法执行，在ieda上执行命令，可以直接点击右边Maven按钮，上面m图标即可。</p>
+<h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/Maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5.png"></p>
+<p>图中五个概念都会运用在Maven的配置文件中，Maven配置文件是一个强约定性的xml文件，其名称一定是pom.xml</p>
+<h3 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM(Project Object Model)"></a>POM(Project Object Model)</h3><p>java项目的配置都在POM文件中，有以下行为：</p>
+<ul>
+<li>定义项目的类型，名字</li>
+<li>管理依赖关系</li>
+<li>定制插件</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/pomxml.svg"></p>
+<ol>
+<li>Maven坐标</li>
+<li>Maven工程属性</li>
+<li>Maven依赖</li>
+<li>Maven插件</li>
+</ol>
+<h4 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.youkeda.course<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这四个标签决定了Maven的坐标，所谓坐标就是Maven的位置信息，其决定了Maven工程部署后在Maven仓库中的文件位置，所以其必须要指定。</p>
+<ul>
+<li><p>groupId<br>其就像一个文件夹，命名和java包相似，以小写字母和.组成</p>
+</li>
+<li><p>artifactId<br>其像一个文件名，在groupId中应该是唯一的。只能使用小写英文字母、.、-、_</p>
+</li>
+<li><p>packaging<br>Maven工程执行完后，会把整个工程打包成packaging指定的格式，默认情况下是jar，若pom.xml中没有声明这个属性，就是jar，除了jar以外，还有别的格式：</p>
+<ul>
+<li>war</li>
+<li>ear</li>
+<li>pom</li>
+</ul>
+</li>
+<li><p>version<br>版本号，其基本上遵守软件工程中对版本号的要求    </p>
+<p>在Maven中，会把工程分为两个状态：</p>
+<ul>
+<li>SNAPSHOT<br>译为快照，表示当前工程是出于不稳定阶段，在开发时在版本号后加上。</li>
+<li>RELEASE<br>其代表是稳定，在正式发布时改为RELEASE，当然不用特意加上。</li>
+</ul>
+<p>三位版本号的使用也是有规则的：</p>
+<ul>
+<li>第一位代表主版号，一般是开发团队约定的</li>
+<li>第二位时新增功能，每次新增功能后增加</li>
+<li>第三位时bugfix后的版本，bugfix是修复代码功能的行为，数字代表修复了多少次bug</li>
+</ul>
+<p>也有时只有两位版本号，没有第一位的主版号。软件的版本号从1.0.0开始。一般来说每一位不超过100。    </p>
+<p>最后，执行Maven命令生成的jar文件名格式是[artifactId]-[version].jar。</p>
+</li>
+</ul>
+<h4 id="Maven属性配置"><a href="#Maven属性配置" class="headerlink" title="Maven属性配置"></a>Maven属性配置</h4><p>Maven属性配置是用来做参数设置的，如下是常见的配置：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先，它的格式是要求在properties标签之内，properties内的标签可以自定义，要求命名为小写字母+.      </p>
+<p>默认的公共参数也是可以修改的，比如：</p>
+<ul>
+<li>java.version<br>代表设置参数java.version，上例中的值为1.8</li>
+<li>maven.compiler.source<br>其指定Maven编译时源代码的JDK版本，这里的${java.version}是一个动态值，它会自动找到这个参数配置的值，上例中是1.8</li>
+<li>maven.build.sourceEncoding<br>其指定工程代码文件的文件编码格式，一般情况下是UTF-8</li>
+<li>maven.compiler.target<br>其的作用是按照这个值来进行编译源代码，上例是按照JDK1.8来编译的</li>
+</ul>
+<h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><p>有了上述的Maven坐标，我们就可以通过Maven依赖管理来运用别人的代码了。依赖管理的标签是dependencies，其就是用于指定当前工程依赖其它代码库的，Maven会自动管理jar依赖。当在pom.xml文件中声明dependencies标签后，会先去本地用户目录下的.m2文件夹中去寻找对应文件，如果没有就从中央仓库下载。下载完会保存在.m2文件夹中。    </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个pom.xml只能有一个dependencies，但其中间可以有多个dependency，每个代表一个依赖。标签其中实际上是Maven坐标信息，也就是说有了坐标信息就可以建立依赖了。</p>
+<p><strong>一般别人的代码库被称为三方库，自己或团队写的为二方库</strong>  </p>
+<h5 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h5><p>Maven会将所有的jar存在中央仓库中，可以通过这个链接访问<a href="https://search.maven.org/" target="_blank" rel="noopener">中央仓库</a>，不能翻墙的情况下，可以使用阿里云的<a href="https://maven.aliyun.com/mvn/search" target="_blank" rel="noopener">镜像服务器</a>。</p>
+<h5 id="间接依赖"><a href="#间接依赖" class="headerlink" title="间接依赖"></a>间接依赖</h5><p>间接依赖是mvn成功的核心要素，简单的说，如果一个remote工程依赖了okhttp库，而当前工程locale依赖了remote工程，那么它也依赖了okhttp库。</p>
+<h4 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h4><p>插件体系让Maven变得高度可自制<br>格式如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里的maven-compiler-plugin插件是用来执行maven<br>compile的。观察可以发现插件的核心也是Maven坐标！！！</p>
+<h1 id="第一个Spring"><a href="#第一个Spring" class="headerlink" title="第一个Spring"></a>第一个Spring</h1><h2 id="引入Spring"><a href="#引入Spring" class="headerlink" title="引入Spring"></a>引入Spring</h2><p>目前使用的都是Spring5，其Maven坐标如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Spring强调面向接口编程，所以大多数情况下Spring代码都会有接口和实现类</strong>    </p>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><p>运行一个调用代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> com.youkeda.service.MessageService;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Application</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(Application<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        MessageService msgService = context.getBean(MessageService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(msgService.getMessage());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>上述代码中，除了在主类上添加@ComponentScan注解之外，还需要在实现类上添加@Service注解！！！</strong></p>
+<p>代码看上去很复杂，实际上它实现的是调用msgService实例的getMessage()方法。其包含以下几个知识点：</p>
+<ul>
+<li>注解</li>
+<li>Spring Bean</li>
+<li>Spring 扫描</li>
+<li>Spring 声明周期</li>
+</ul>
+<h2 id="面向接口编程的理解"><a href="#面向接口编程的理解" class="headerlink" title="面向接口编程的理解"></a>面向接口编程的理解</h2><p>首先比较一下上述Spring方式和普通java方式的区别：</p>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/springbeanvs.svg"></p>
+<p>表面看上去java方式更加简单，但是观察之后可以发现，在Spring中如果想要调用MessageService，可以直接在上下文获取，而不需要关心其具体的实现类以及如何实例化。在多人开发中，只要约定好接口就可以一起工作，让使用者更加专注与接口的定义与运用。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Derwh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://derwh.github.io/2020/11/03/Spring/">https://derwh.github.io/2020/11/03/Spring/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Derwh.github.io" target="_blank">Derwh</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring/">Spring</a></div><div class="post_share"><div class="social-share" data-image="https://s1.ax1x.com/2020/10/30/Bt8jV1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/10/30/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/"><img class="next-cover" data-src="https://s1.ax1x.com/2020/10/30/Bt0reU.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">最长公共子序列</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: 'EfBxYkcjz8d5HcxNYDPnv62d-gzGzoHsz',
+  appKey: 'p5cHkzfYK0nyEm1BGpsnz97h',
+  placeholder: 'Please leave your footprints',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: false,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: {"tv_doge":"6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png","tv_亲亲":"a8111ad55953ef5e3be3327ef94eb4a39d535d06.png","tv_偷笑":"bb690d4107620f1c15cff29509db529a73aee261.png","tv_再见":"180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png","tv_冷漠":"b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png","tv_发怒":"34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png","tv_发财":"34db290afd2963723c6eb3c4560667db7253a21a.png","tv_可爱":"9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png","tv_吐血":"09dd16a7aa59b77baa1155d47484409624470c77.png","tv_呆":"fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png","tv_呕吐":"9f996894a39e282ccf5e66856af49483f81870f3.png","tv_困":"241ee304e44c0af029adceb294399391e4737ef2.png","tv_坏笑":"1f0b87f731a671079842116e0991c91c2c88645a.png","tv_大佬":"093c1e2c490161aca397afc45573c877cdead616.png","tv_大哭":"23269aeb35f99daee28dda129676f6e9ea87934f.png","tv_委屈":"d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png","tv_害羞":"a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png","tv_尴尬":"7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png","tv_微笑":"70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png","tv_思考":"90cf159733e558137ed20aa04d09964436f618a1.png","tv_惊吓":"0d15c7e2ee58e935adc6a7193ee042388adc22af.png"},
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" style="background-image: url(https://s1.ax1x.com/2020/11/04/Bg0W3n.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By Derwh</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  CommonHTML: {
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "HTML-CSS": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  },
+  "SVG": { 
+    linebreaks: { automatic: true, width: "90% container" }
+  }
+});
+</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+  var all = MathJax.Hub.getAllJax(), i;
+  for (i=0; i < all.length; i += 1) {
+    all[i].SourceElement().parentNode.className += ' has-jax';
+  }
+});
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = false;
+POWERMODE.shake = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/third-party/ClickShowText.js"></script></body></html>

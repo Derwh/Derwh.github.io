@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://derwh.github.io/"/>
-  <updated>2020-10-30T08:07:44.456Z</updated>
+  <updated>2020-11-04T14:28:35.549Z</updated>
   <id>https://derwh.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring</title>
+    <link href="https://derwh.github.io/2020/11/03/Spring/"/>
+    <id>https://derwh.github.io/2020/11/03/Spring/</id>
+    <published>2020-11-03T11:32:39.725Z</published>
+    <updated>2020-11-04T14:28:35.549Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Spring核心&quot;&gt;&lt;a href=&quot;#Spring核心&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="JAVA" scheme="https://Derwh.github.io/categories/JAVA/"/>
+    
+    
+      <category term="Spring" scheme="https://Derwh.github.io/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>最长公共子序列</title>
@@ -258,6 +285,61 @@
     
     
       <category term="异常" scheme="https://Derwh.github.io/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深度学习(一)</title>
+    <link href="https://derwh.github.io/2020/09/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://derwh.github.io/2020/09/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</id>
+    <published>2020-09-16T14:56:53.100Z</published>
+    <updated>2020-09-16T15:28:42.008Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;神经网络的学习&quot;&gt;&lt;a href=&quot;#神经网络的学习&quot; class=&quot;headerlink&quot; title=&quot;神经网络的学习&quot;&gt;&lt;/a&gt;神经网络的学习&lt;/h1&gt;&lt;h3 id=&quot;从数据中学习&quot;&gt;&lt;a href=&quot;#从数据中学习&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="深度学习" scheme="https://Derwh.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="https://Derwh.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python基础(二)</title>
+    <link href="https://derwh.github.io/2020/09/13/python%E5%9F%BA%E7%A1%80(%E4%BA%8C)/"/>
+    <id>https://derwh.github.io/2020/09/13/python%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</id>
+    <published>2020-09-13T09:59:45.266Z</published>
+    <updated>2020-10-08T08:18:55.643Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;python基础知识点-二&quot;&gt;&lt;a href=&quot;#python基础知识点-二&quot; class=&quot;headerlink&quot; title=&quot;python基础知识点(二)&quot;&gt;&lt;/a&gt;python基础知识点(二)&lt;/h1&gt;&lt;p&gt;if，字典&lt;/p&gt;
+&lt;h1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="https://Derwh.github.io/categories/python/"/>
+    
+    
+      <category term="python" scheme="https://Derwh.github.io/tags/python/"/>
     
   </entry>
   

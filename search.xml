@@ -1068,4 +1068,188 @@
         <tag>动态规划</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Spring</title>
+    <url>/2020/11/03/Spring/</url>
+    <content><![CDATA[<h1 id="Spring核心"><a href="#Spring核心" class="headerlink" title="Spring核心"></a>Spring核心</h1><p>Spring是java语言必须要掌握的框架，其核心技术点是依赖注入(DI)。使用Spring能大大降低开发难度和助力团队发展，更加强调面向对象。</p>
+<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="Maven简介"><a href="#Maven简介" class="headerlink" title="Maven简介"></a>Maven简介</h2><p>Maven，全称Apache Maven，其是一个项目管理和构建自动化工具，其最被关注的功能是项目构建功能，Maven是必须掌握的工具。Maven提供了一个命令行工具可以把工程打包成java支持的格式(比如jar)，并且支持部署到中央仓库，如此，使用者可以很方便运用别人的代码，只需要添加依赖即可。<br>Maven系统构架图：</p>
+<p><img src = "https://style.youkeda.com/img/ham/course/j4/mvn.svg"></p>
+<p>Maven使用惯例优于配置的原则，在没有定制之前，所有的项目要有如下的结构：   </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${basedir}</td>
+<td>存放pom.xml和所有的子目录</td>
+</tr>
+<tr>
+<td>${basedir}/pom.xml</td>
+<td>Maven项目配置文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/java</td>
+<td>项目的java源代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/main/resources</td>
+<td>项目的资源，比如property文件</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/java</td>
+<td>项目的测试类，比如说JUnit代码</td>
+</tr>
+<tr>
+<td>${basedir}/src/test/resources</td>
+<td>测试使用的资源</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这里的&#36;{basedir}代表的是工程的根路径。一个Maven项目在默认情况下会产生JAR文件，编译后的classes会放在&#36;{basedir}/target/classes下面，JAR文件会放在&#36;{basedir}/target下面。代码位置很重要，放错会导致不能运行！</p>
+<h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>Maven本地安装参考：<a href="https://ham.youkeda.com/articles/detail/5f3759465e205f30b2c2b319" target="_blank" rel="noopener">Maven安装</a></p>
+<h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p>这个Maven工具是在命令行(终端软件)里输入指令的方式在执行的，需要掌握以下常见的命令，命令要在工程的根目录下执行。</p>
+<ol>
+<li><p>mvn clean compile<br>编译命令，Maven自动扫描src/main/java下面的代码并完成编译工作，执行完会在根目录下生成target/classes目录。</p>
+</li>
+<li><p>mvn clean package<br>编译并打包命令，其是compile和package的集合，就是说会先执行compile命令，结果会把所有的java文件和资源打包成一个jar格式的压缩包。</p>
+</li>
+<li><p>mvn clean install<br>执行安装命令，其是complie，package和install的集合，就是说会先执行compile命令，再执行打包命令，最后执行安装到本地Maven仓库目录里的命令。这个目录是&#36;{uesr_home}.m2。${user_home}是电脑登录用户名的个人目录。</p>
+</li>
+<li><p>mvn compile exec:java -Dexec.mainClass=${main}<br>命令意思是执行了compile后，执行运行java的命令，具体执行哪个是&#36;{main}这个参数决定的。比如：mvn compile exec:java -Dexec.mainClass=com.youkeda.Test</p>
+</li>
+</ol>
+<p>上述命令在idea上可能无法执行，在ieda上执行命令，可以直接点击右边Maven按钮，上面m图标即可。</p>
+<h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/Maven%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5.png"></p>
+<p>图中五个概念都会运用在Maven的配置文件中，Maven配置文件是一个强约定性的xml文件，其名称一定是pom.xml</p>
+<h3 id="POM-Project-Object-Model"><a href="#POM-Project-Object-Model" class="headerlink" title="POM(Project Object Model)"></a>POM(Project Object Model)</h3><p>java项目的配置都在POM文件中，有以下行为：</p>
+<ul>
+<li>定义项目的类型，名字</li>
+<li>管理依赖关系</li>
+<li>定制插件</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/pomxml.svg"></p>
+<ol>
+<li>Maven坐标</li>
+<li>Maven工程属性</li>
+<li>Maven依赖</li>
+<li>Maven插件</li>
+</ol>
+<h4 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.youkeda.course<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这四个标签决定了Maven的坐标，所谓坐标就是Maven的位置信息，其决定了Maven工程部署后在Maven仓库中的文件位置，所以其必须要指定。</p>
+<ul>
+<li><p>groupId<br>其就像一个文件夹，命名和java包相似，以小写字母和.组成</p>
+</li>
+<li><p>artifactId<br>其像一个文件名，在groupId中应该是唯一的。只能使用小写英文字母、.、-、_</p>
+</li>
+<li><p>packaging<br>Maven工程执行完后，会把整个工程打包成packaging指定的格式，默认情况下是jar，若pom.xml中没有声明这个属性，就是jar，除了jar以外，还有别的格式：</p>
+<ul>
+<li>war</li>
+<li>ear</li>
+<li>pom</li>
+</ul>
+</li>
+<li><p>version<br>版本号，其基本上遵守软件工程中对版本号的要求    </p>
+<p>在Maven中，会把工程分为两个状态：</p>
+<ul>
+<li>SNAPSHOT<br>译为快照，表示当前工程是出于不稳定阶段，在开发时在版本号后加上。</li>
+<li>RELEASE<br>其代表是稳定，在正式发布时改为RELEASE，当然不用特意加上。</li>
+</ul>
+<p>三位版本号的使用也是有规则的：</p>
+<ul>
+<li>第一位代表主版号，一般是开发团队约定的</li>
+<li>第二位时新增功能，每次新增功能后增加</li>
+<li>第三位时bugfix后的版本，bugfix是修复代码功能的行为，数字代表修复了多少次bug</li>
+</ul>
+<p>也有时只有两位版本号，没有第一位的主版号。软件的版本号从1.0.0开始。一般来说每一位不超过100。    </p>
+<p>最后，执行Maven命令生成的jar文件名格式是[artifactId]-[version].jar。</p>
+</li>
+</ul>
+<h4 id="Maven属性配置"><a href="#Maven属性配置" class="headerlink" title="Maven属性配置"></a>Maven属性配置</h4><p>Maven属性配置是用来做参数设置的，如下是常见的配置：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>$&#123;java.version&#125;<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先，它的格式是要求在properties标签之内，properties内的标签可以自定义，要求命名为小写字母+.      </p>
+<p>默认的公共参数也是可以修改的，比如：</p>
+<ul>
+<li>java.version<br>代表设置参数java.version，上例中的值为1.8</li>
+<li>maven.compiler.source<br>其指定Maven编译时源代码的JDK版本，这里的${java.version}是一个动态值，它会自动找到这个参数配置的值，上例中是1.8</li>
+<li>maven.build.sourceEncoding<br>其指定工程代码文件的文件编码格式，一般情况下是UTF-8</li>
+<li>maven.compiler.target<br>其的作用是按照这个值来进行编译源代码，上例是按照JDK1.8来编译的</li>
+</ul>
+<h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><p>有了上述的Maven坐标，我们就可以通过Maven依赖管理来运用别人的代码了。依赖管理的标签是dependencies，其就是用于指定当前工程依赖其它代码库的，Maven会自动管理jar依赖。当在pom.xml文件中声明dependencies标签后，会先去本地用户目录下的.m2文件夹中去寻找对应文件，如果没有就从中央仓库下载。下载完会保存在.m2文件夹中。    </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>一个pom.xml只能有一个dependencies，但其中间可以有多个dependency，每个代表一个依赖。标签其中实际上是Maven坐标信息，也就是说有了坐标信息就可以建立依赖了。</p>
+<p><strong>一般别人的代码库被称为三方库，自己或团队写的为二方库</strong>  </p>
+<h5 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h5><p>Maven会将所有的jar存在中央仓库中，可以通过这个链接访问<a href="https://search.maven.org/" target="_blank" rel="noopener">中央仓库</a>，不能翻墙的情况下，可以使用阿里云的<a href="https://maven.aliyun.com/mvn/search" target="_blank" rel="noopener">镜像服务器</a>。</p>
+<h5 id="间接依赖"><a href="#间接依赖" class="headerlink" title="间接依赖"></a>间接依赖</h5><p>间接依赖是mvn成功的核心要素，简单的说，如果一个remote工程依赖了okhttp库，而当前工程locale依赖了remote工程，那么它也依赖了okhttp库。</p>
+<h4 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h4><p>插件体系让Maven变得高度可自制<br>格式如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里的maven-compiler-plugin插件是用来执行maven<br>compile的。观察可以发现插件的核心也是Maven坐标！！！</p>
+<h1 id="第一个Spring"><a href="#第一个Spring" class="headerlink" title="第一个Spring"></a>第一个Spring</h1><h2 id="引入Spring"><a href="#引入Spring" class="headerlink" title="引入Spring"></a>引入Spring</h2><p>目前使用的都是Spring5，其Maven坐标如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Spring强调面向接口编程，所以大多数情况下Spring代码都会有接口和实现类</strong>    </p>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a>代码实例</h2><p>运行一个调用代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> com.youkeda.service.MessageService;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Application</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext context = <span class="keyword">new</span> AnnotationConfigApplicationContext(Application<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        MessageService msgService = context.getBean(MessageService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(msgService.getMessage());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>上述代码中，除了在主类上添加@ComponentScan注解之外，还需要在实现类上添加@Service注解！！！</strong></p>
+<p>代码看上去很复杂，实际上它实现的是调用msgService实例的getMessage()方法。其包含以下几个知识点：</p>
+<ul>
+<li>注解</li>
+<li>Spring Bean</li>
+<li>Spring 扫描</li>
+<li>Spring 声明周期</li>
+</ul>
+<h2 id="面向接口编程的理解"><a href="#面向接口编程的理解" class="headerlink" title="面向接口编程的理解"></a>面向接口编程的理解</h2><p>首先比较一下上述Spring方式和普通java方式的区别：</p>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/springbeanvs.svg"></p>
+<p>表面看上去java方式更加简单，但是观察之后可以发现，在Spring中如果想要调用MessageService，可以直接在上下文获取，而不需要关心其具体的实现类以及如何实例化。在多人开发中，只要约定好接口就可以一起工作，让使用者更加专注与接口的定义与运用。</p>
+]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习(一)</title>
+    <url>/2020/09/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="神经网络的学习"><a href="#神经网络的学习" class="headerlink" title="神经网络的学习"></a>神经网络的学习</h1><h3 id="从数据中学习"><a href="#从数据中学习" class="headerlink" title="从数据中学习"></a>从数据中学习</h3><h5 id="训练数据和测试数据"><a href="#训练数据和测试数据" class="headerlink" title="训练数据和测试数据"></a>训练数据和测试数据</h5><p>机器学习中将数据分为训练数据和测试数据。使用训练数据来学习，寻找最优参数，然后使用测试数据评价训练得到的数据的实际能力。训练数据也称为监督数据。</p>
+<h5 id="泛化能力"><a href="#泛化能力" class="headerlink" title="泛化能力"></a>泛化能力</h5><p>泛化能力是指处理未被观察学习的数据(不包含在训练数据中)。</p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>神经网络的学习所使用的指标称为损失函数，可以是任意的函数，一般使用均方误差和交叉熵误差。<br>损失函数是指神经网络性能的恶劣程度的指标，即当前神经网络对监督数据在多大程度上不拟合。为其加上负号可表示性能的多好。</p>
+<h5 id="均方误差"><a href="#均方误差" class="headerlink" title="均方误差"></a>均方误差</h5><p>公式如下</p>
+<script type="math/tex; mode=display">E=\frac{1}{2}\sum_{k}(y_k-t_k)^2</script><p>$y_k$表示神经网络的输出，$t_k$表示监督数据，k表示数据的维数。</p>
+]]></content>
+      <categories>
+        <category>深度学习</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python基础(二)</title>
+    <url>/2020/09/13/python%E5%9F%BA%E7%A1%80(%E4%BA%8C)/</url>
+    <content><![CDATA[<h1 id="python基础知识点-二"><a href="#python基础知识点-二" class="headerlink" title="python基础知识点(二)"></a>python基础知识点(二)</h1><p>if，字典</p>
+<h1 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h1><h3 id="条件测试"><a href="#条件测试" class="headerlink" title="条件测试"></a>条件测试</h3><p>bmw以大写形式打印，其他的以首字母大写形式打印<br><strong>if和else后面都有“:”</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cars &#x3D; [&#39;audi&#39;, &#39;bmw&#39;, &#39;subaru&#39;, &#39;toyota&#39;]</span><br><span class="line">for car in cars:</span><br><span class="line">    if car &#x3D;&#x3D; &#39;bmw&#39;:</span><br><span class="line">        print(car.upper())</span><br><span class="line">    else:</span><br><span class="line">        print(car.title())</span><br></pre></td></tr></table></figure></p>
+<p>python逻辑与和逻辑或用and和or表示<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">age &#x3D; 20</span><br><span class="line">print(age &gt; 10 and age &lt; 25)</span><br><span class="line">print(age &gt; 25 or age &lt; 21)</span><br></pre></td></tr></table></figure><br>检查特定值是否在列表中使用in，是否不在使用not in<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">test &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">print(&#39;a&#39; in test)</span><br><span class="line">print(&#39;d&#39; not in test)</span><br></pre></td></tr></table></figure></p>
+<h3 id="if-elif-else结构"><a href="#if-elif-else结构" class="headerlink" title="if-elif-else结构"></a>if-elif-else结构</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">age &#x3D; 12</span><br><span class="line">if age &lt; 4:</span><br><span class="line">    price &#x3D; 0</span><br><span class="line">elif age &lt; 18:</span><br><span class="line">    price &#x3D; 5</span><br><span class="line">elif age &lt; 65:</span><br><span class="line">    price &#x3D; 10</span><br><span class="line">else:</span><br><span class="line">    price &#x3D; 5</span><br><span class="line">print(&quot;Your admission cost is $&quot; + str(price) + &quot;.&quot;)</span><br></pre></td></tr></table></figure>
+<p>else部分可以省略，改换成elif，其更安全<br><strong>测试多个条件时，使用多个if</strong></p>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><p>即为键——值对<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alien_0 &#x3D; &#123;&#39;color&#39; : &#39;green&#39;, &#39;points&#39; : 5&#125;</span><br><span class="line"></span><br><span class="line">print(alien_0[&#39;color&#39;])</span><br><span class="line">print(alien_0[&#39;points&#39;])</span><br></pre></td></tr></table></figure></p>
+<h3 id="添加键——值对"><a href="#添加键——值对" class="headerlink" title="添加键——值对"></a>添加键——值对</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alien_0[&#39;x_position&#39;] &#x3D; 0</span><br><span class="line">alien_0[&#39;y_position&#39;] &#x3D; 0</span><br></pre></td></tr></table></figure>
+<p><strong>修改字典中的值时只需赋值即可</strong></p>
+<h3 id="删除键——值对"><a href="#删除键——值对" class="headerlink" title="删除键——值对"></a>删除键——值对</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">del alien_0[&#39;points&#39;]</span><br></pre></td></tr></table></figure>
+<h3 id="遍历所有键——值对"><a href="#遍历所有键——值对" class="headerlink" title="遍历所有键——值对"></a>遍历所有键——值对</h3><p>其中key和value变量名可以任取<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">user_0 &#x3D; &#123;</span><br><span class="line">    &#39;username&#39; : &#39;efermi&#39;,</span><br><span class="line">    &#39;first&#39; : &#39;enrico&#39;,</span><br><span class="line">    &#39;last&#39; : &#39;fermi&#39;,</span><br><span class="line">&#125;</span><br><span class="line">for key, value in user_0.items():</span><br><span class="line">    print(&quot;\nkey: &quot; + key)</span><br><span class="line">    print(&quot;value: &quot; + value)</span><br></pre></td></tr></table></figure></p>
+<h3 id="遍历所有键"><a href="#遍历所有键" class="headerlink" title="遍历所有键"></a>遍历所有键</h3><p>其中.keys()可省略<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for key in user_0.keys():</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure></p>
+<h3 id="按顺序遍历所有键"><a href="#按顺序遍历所有键" class="headerlink" title="按顺序遍历所有键"></a>按顺序遍历所有键</h3><p>使用sorted函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for key in sorted(user_0.keys()):</span><br><span class="line">    print(key)</span><br></pre></td></tr></table></figure></p>
+<h3 id="遍历所有值"><a href="#遍历所有值" class="headerlink" title="遍历所有值"></a>遍历所有值</h3>]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>
