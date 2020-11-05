@@ -1085,43 +1085,43 @@
 </thead>
 <tbody>
 <tr>
-<td>${basedir}</td>
+<td><code>${basedir}</code></td>
 <td>存放pom.xml和所有的子目录</td>
 </tr>
 <tr>
-<td>${basedir}/pom.xml</td>
+<td><code>${basedir}/pom.xml</code></td>
 <td>Maven项目配置文件</td>
 </tr>
 <tr>
-<td>${basedir}/src/main/java</td>
+<td><code>${basedir}/src/main/java</code></td>
 <td>项目的java源代码</td>
 </tr>
 <tr>
-<td>${basedir}/src/main/resources</td>
+<td><code>${basedir}/src/main/resources</code></td>
 <td>项目的资源，比如property文件</td>
 </tr>
 <tr>
-<td>${basedir}/src/test/java</td>
+<td><code>${basedir}/src/test/java</code></td>
 <td>项目的测试类，比如说JUnit代码</td>
 </tr>
 <tr>
-<td>${basedir}/src/test/resources</td>
+<td><code>${basedir}/src/test/resources</code></td>
 <td>测试使用的资源</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>这里的&#36;{basedir}代表的是工程的根路径。一个Maven项目在默认情况下会产生JAR文件，编译后的classes会放在&#36;{basedir}/target/classes下面，JAR文件会放在&#36;{basedir}/target下面。代码位置很重要，放错会导致不能运行！</p>
+<p>这里的<code>${basedir}</code>代表的是工程的根路径。一个Maven项目在默认情况下会产生JAR文件，编译后的classes会放在<code>${basedir}/target/classes</code>下面，JAR文件会放在<code>${basedir}/target</code>下面。代码位置很重要，放错会导致不能运行！</p>
 <h2 id="Maven安装"><a href="#Maven安装" class="headerlink" title="Maven安装"></a>Maven安装</h2><p>Maven本地安装参考：<a href="https://ham.youkeda.com/articles/detail/5f3759465e205f30b2c2b319" target="_blank" rel="noopener">Maven安装</a></p>
 <h2 id="Maven命令"><a href="#Maven命令" class="headerlink" title="Maven命令"></a>Maven命令</h2><p>这个Maven工具是在命令行(终端软件)里输入指令的方式在执行的，需要掌握以下常见的命令，命令要在工程的根目录下执行。</p>
 <ol>
-<li><p>mvn clean compile<br>编译命令，Maven自动扫描src/main/java下面的代码并完成编译工作，执行完会在根目录下生成target/classes目录。</p>
+<li><p><code>mvn clean compile</code><br>编译命令，Maven自动扫描src/main/java下面的代码并完成编译工作，执行完会在根目录下生成target/classes目录。</p>
 </li>
-<li><p>mvn clean package<br>编译并打包命令，其是compile和package的集合，就是说会先执行compile命令，结果会把所有的java文件和资源打包成一个jar格式的压缩包。</p>
+<li><p><code>mvn clean package</code><br>编译并打包命令，其是compile和package的集合，就是说会先执行compile命令，结果会把所有的java文件和资源打包成一个jar格式的压缩包。</p>
 </li>
-<li><p>mvn clean install<br>执行安装命令，其是complie，package和install的集合，就是说会先执行compile命令，再执行打包命令，最后执行安装到本地Maven仓库目录里的命令。这个目录是&#36;{uesr_home}.m2。${user_home}是电脑登录用户名的个人目录。</p>
+<li><p><code>mvn clean install</code><br>执行安装命令，其是complie，package和install的集合，就是说会先执行compile命令，再执行打包命令，最后执行安装到本地Maven仓库目录里的命令。这个目录是<code>${basedir}</code>.m2。<code>${user_home}</code>是电脑登录用户名的个人目录。</p>
 </li>
-<li><p>mvn compile exec:java -Dexec.mainClass=${main}<br>命令意思是执行了compile后，执行运行java的命令，具体执行哪个是&#36;{main}这个参数决定的。比如：mvn compile exec:java -Dexec.mainClass=com.youkeda.Test</p>
+<li><p><code>mvn compile exec:java -Dexec.mainClass=${main}</code><br>命令意思是执行了compile后，执行运行java的命令，具体执行哪个是<code>${main}</code>这个参数决定的。比如：<code>mvn compile exec:java -Dexec.mainClass=com.youkeda.Test</code></p>
 </li>
 </ol>
 <p>上述命令在idea上可能无法执行，在ieda上执行命令，可以直接点击右边Maven按钮，上面m图标即可。</p>
@@ -1143,22 +1143,22 @@
 <h4 id="Maven坐标"><a href="#Maven坐标" class="headerlink" title="Maven坐标"></a>Maven坐标</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.youkeda.course<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>app<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这四个标签决定了Maven的坐标，所谓坐标就是Maven的位置信息，其决定了Maven工程部署后在Maven仓库中的文件位置，所以其必须要指定。</p>
 <ul>
-<li><p>groupId<br>其就像一个文件夹，命名和java包相似，以小写字母和.组成</p>
+<li><p><code>groupId</code><br>其就像一个文件夹，命名和java包相似，以小写字母和.组成</p>
 </li>
-<li><p>artifactId<br>其像一个文件名，在groupId中应该是唯一的。只能使用小写英文字母、.、-、_</p>
+<li><p><code>artifactId</code><br>其像一个文件名，在groupId中应该是唯一的。只能使用小写英文字母、.、-、_</p>
 </li>
-<li><p>packaging<br>Maven工程执行完后，会把整个工程打包成packaging指定的格式，默认情况下是jar，若pom.xml中没有声明这个属性，就是jar，除了jar以外，还有别的格式：</p>
+<li><p><code>packaging</code><br>Maven工程执行完后，会把整个工程打包成packaging指定的格式，默认情况下是jar，若pom.xml中没有声明这个属性，就是jar，除了jar以外，还有别的格式：</p>
 <ul>
 <li>war</li>
 <li>ear</li>
 <li>pom</li>
 </ul>
 </li>
-<li><p>version<br>版本号，其基本上遵守软件工程中对版本号的要求    </p>
+<li><p><code>version</code><br>版本号，其基本上遵守软件工程中对版本号的要求    </p>
 <p>在Maven中，会把工程分为两个状态：</p>
 <ul>
-<li>SNAPSHOT<br>译为快照，表示当前工程是出于不稳定阶段，在开发时在版本号后加上。</li>
-<li>RELEASE<br>其代表是稳定，在正式发布时改为RELEASE，当然不用特意加上。</li>
+<li><code>SNAPSHOT</code><br>译为快照，表示当前工程是出于不稳定阶段，在开发时在版本号后加上。</li>
+<li><code>RELEASE</code><br>其代表是稳定，在正式发布时改为RELEASE，当然不用特意加上。</li>
 </ul>
 <p>三位版本号的使用也是有规则的：</p>
 <ul>
@@ -1175,10 +1175,10 @@
 <p>首先，它的格式是要求在properties标签之内，properties内的标签可以自定义，要求命名为小写字母+.      </p>
 <p>默认的公共参数也是可以修改的，比如：</p>
 <ul>
-<li>java.version<br>代表设置参数java.version，上例中的值为1.8</li>
-<li>maven.compiler.source<br>其指定Maven编译时源代码的JDK版本，这里的${java.version}是一个动态值，它会自动找到这个参数配置的值，上例中是1.8</li>
-<li>maven.build.sourceEncoding<br>其指定工程代码文件的文件编码格式，一般情况下是UTF-8</li>
-<li>maven.compiler.target<br>其的作用是按照这个值来进行编译源代码，上例是按照JDK1.8来编译的</li>
+<li><code>java.version</code><br>代表设置参数java.version，上例中的值为1.8</li>
+<li><code>maven.compiler.source</code><br>其指定Maven编译时源代码的JDK版本，这里的${java.version}是一个动态值，它会自动找到这个参数配置的值，上例中是1.8</li>
+<li><code>maven.build.sourceEncoding</code><br>其指定工程代码文件的文件编码格式，一般情况下是UTF-8</li>
+<li><code>maven.compiler.target</code><br>其的作用是按照这个值来进行编译源代码，上例是按照JDK1.8来编译的</li>
 </ul>
 <h4 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h4><p>有了上述的Maven坐标，我们就可以通过Maven依赖管理来运用别人的代码了。依赖管理的标签是dependencies，其就是用于指定当前工程依赖其它代码库的，Maven会自动管理jar依赖。当在pom.xml文件中声明dependencies标签后，会先去本地用户目录下的.m2文件夹中去寻找对应文件，如果没有就从中央仓库下载。下载完会保存在.m2文件夹中。    </p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -1188,7 +1188,7 @@
 <h5 id="间接依赖"><a href="#间接依赖" class="headerlink" title="间接依赖"></a>间接依赖</h5><p>间接依赖是mvn成功的核心要素，简单的说，如果一个remote工程依赖了okhttp库，而当前工程locale依赖了remote工程，那么它也依赖了okhttp库。</p>
 <h4 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h4><p>插件体系让Maven变得高度可自制<br>格式如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这里的maven-compiler-plugin插件是用来执行maven<br>compile的。观察可以发现插件的核心也是Maven坐标！！！</p>
+<p>这里的<code>maven-compiler-plugin</code>插件是用来执行maven<br>compile的。观察可以发现插件的核心也是Maven坐标！！！</p>
 <h1 id="第一个Spring"><a href="#第一个Spring" class="headerlink" title="第一个Spring"></a>第一个Spring</h1><h2 id="引入Spring"><a href="#引入Spring" class="headerlink" title="引入Spring"></a>引入Spring</h2><p>目前使用的都是Spring5，其Maven坐标如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><strong>Spring强调面向接口编程，所以大多数情况下Spring代码都会有接口和实现类</strong>    </p>
@@ -1205,6 +1205,111 @@
 <h2 id="面向接口编程的理解"><a href="#面向接口编程的理解" class="headerlink" title="面向接口编程的理解"></a>面向接口编程的理解</h2><p>首先比较一下上述Spring方式和普通java方式的区别：</p>
 <p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/springbeanvs.svg"></p>
 <p>表面看上去java方式更加简单，但是观察之后可以发现，在Spring中如果想要调用MessageService，可以直接在上下文获取，而不需要关心其具体的实现类以及如何实例化。在多人开发中，只要约定好接口就可以一起工作，让使用者更加专注与接口的定义与运用。</p>
+<h1 id="Spring依赖注入"><a href="#Spring依赖注入" class="headerlink" title="Spring依赖注入"></a>Spring依赖注入</h1><h2 id="java注解-Annotation"><a href="#java注解-Annotation" class="headerlink" title="java注解(Annotation)"></a>java注解(Annotation)</h2><p>上例中<code>@Service</code>就是一个注解。本质上，注解是java推出的一种注释机制，然而和普通的注释相比较，它可以在编译，运行阶段读取的。其给了用户很多拓展空间，并且不会污染源代码，可以利用它实现一些增强功能。Spring中大量使用了注解。</p>
+<p>可以通过<code>@Service</code>的源码来理解注解：</p>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/service1.svg"></p>
+<p>定义注解是要使用别的注解的，那些被使用在注解里面的注解被称为元注解，下面对图中各处标号解释：</p>
+<ol>
+<li><p><code>@Target</code><br>其有一个数组属性，用于注明注解的使用范围，可以同时设定多个。它的值可以是：</p>
+<ul>
+<li><p><code>ElementType.TYPE</code><br>表示可以使用在类，接口类，枚举类上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ElementType.FIELD</code><br>表示可以使用在类的属性上</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ * `ElementType.METHOD`    
+   表示可以使用在类的方法上
+
+   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> WorkspaceService workspaceService;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ * `ElementType.PARAMETER`    
+   表示可以使用在类的参数上
+
+   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">(@RequestParam(<span class="string">"msg"</span>)</span>String msg) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span>+msg;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  若要设置多个作用范围可以这样：
+
+  `@Target({ElementType.TYPE,ElementType.METHOD})`
+</code></pre><ol>
+<li><p><code>@Retention</code><br>用于声明注解的生命周期，就是在java编译运行的哪个环节有用。它的值定义在<code>java.lang.annotation.RetentionPolicy</code>枚举类中，有可选的三个值：</p>
+<ul>
+<li>SOURCE：纯注释作用</li>
+<li>CLASS：在编译阶段有效</li>
+<li><p>RUNTIME：在运行时有效</p>
+<p>例如：<code>@Retention(RetentionPolicy.RUNTIME)</code>，如果时自定义的话，一般设置为RUNTIME。</p>
+</li>
+</ul>
+</li>
+<li><p><code>@Documented</code><br>作用是将注解中的元素包含到JavaDoc文档中，一般都会添加这个注解。</p>
+</li>
+<li><p><code>@interface</code><br>声明当前类为注解，固定写法。</p>
+</li>
+<li><p>Anotation属性<br><code>String value() default &quot;&quot;;</code><br>和类的属性相似，定义了属性的类型(基础类型)，属性名称(默认value，使用时可以忽略)，默认值(default)。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.PARAMETER)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestParam &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@AliasFor</span>(<span class="string">"name"</span>)</span><br><span class="line">  <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="meta">@AliasFor</span>(<span class="string">"value"</span>)</span><br><span class="line">  <span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function">String <span class="title">defaultValue</span><span class="params">()</span> <span class="keyword">default</span> ValueConstants.DEFAULT_NONE</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码中，<code>@AliasFor(&quot;name&quot;)</code>是别名的意思，表示这个属性使用这个别名也可以访问到。因此下面代码意思一致：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestParam</span>(<span class="string">"key"</span>)</span><br><span class="line"><span class="meta">@RequestParam</span>(value=<span class="string">"key"</span>)</span><br><span class="line"><span class="meta">@RequestParam</span>(name=<span class="string">"key"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>关于注解的理解，可以参考这个<a href="https://blog.csdn.net/shengzhu1/article/details/81271409" target="_blank" rel="noopener">blog</a>。</p>
+<h2 id="Spring-Bean"><a href="#Spring-Bean" class="headerlink" title="Spring Bean"></a>Spring Bean</h2><p>IoC(控制反转)容器是Spring框架的最核心组件，其是面向对象编程中的一种设计原则，是一种思想为非技术。<br>在Spring框架中主要通过依赖注入(DI)来实现IoC。<br>在Spring中，所有的Java对象都会通过IoC容器转变为Bean(Spring对象的一种称呼，用Bean来表示对象)。构成应用程序主干和由Spring IoC容器管理的对象称为beans，beans和它们的之间的依赖关系反映在容器使用的配置原数据中。基本上所有的Bean都是由接口+实现类完成，想获取实例直接从IoC容器中获取即可。<br>Spring有两种配置元数据的方式，一种是基于XML，一种是基于Annotation，主流使用第二种。       </p>
+<p><code>org.springframework.context.ApplicationContext</code>接口类定义容器的对外服务，通过这个接口可以获得IoC容器中的Bean对象。Annotation类型的IoC容器对应的类是<code>org.springframework.context.annotation.AnnotationConfigApplicationContext</code>。      </p>
+<p>启动IoC容器：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ApplicationContext context = </span><br><span class="line">    <span class="keyword">new</span> AnnotationConfigApplicationContext(<span class="string">"fm.douban"</span>);</span><br></pre></td></tr></table></figure>
+<p>这段代码含义是启动IoC容器，并自动加载包<code>fm.douban</code>下的Bean，只要在这个包内引用了Spring的类都可以被加载。</p>
+<p>Spring Bean注解如下：</p>
+<ul>
+<li><p><code>@Component</code><br>通用的Bean注解，其它都是拓展自它。</p>
+</li>
+<li><p><code>@Service</code><br>代表Service Bean</p>
+</li>
+<li><p><code>@Controller</code><br>作用于Web Bean</p>
+</li>
+<li><p><code>@Repository</code><br>作用于持久化相关Bean</p>
+</li>
+</ul>
+<p>一般情况下使用<code>@Service</code>，Web服务的话就是使用<code>@Controller</code></p>
+<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><p>依赖注入的第一步是完成容器的启动，第二步就是真正的完成依赖注入行为了。依赖注入也是一种编程思想，简单的来说就是一种获取其它实例的规范。</p>
+<p>以下面代码为例，为了获取SongService实例，需要外部通过setSongService方法传入：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectServiceImpl</span> <span class="keyword">implements</span> <span class="title">SubjectService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> SongService songService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//缓存所有专辑数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Subject&gt; subjectMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        Subject subject = <span class="keyword">new</span> Subject();</span><br><span class="line">        <span class="comment">//... 省略初始化数据的过程</span></span><br><span class="line">        subjectMap.put(subject.getId(), subject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Subject <span class="title">get</span><span class="params">(String subjectId)</span> </span>&#123;</span><br><span class="line">        Subject subject = subjectMap.get(subjectId);</span><br><span class="line">        <span class="comment">//调用 SongService 获取专辑歌曲</span></span><br><span class="line">        List&lt;Song&gt; songs = songService.list(subjectId);</span><br><span class="line">        subject.setSongs(songs);</span><br><span class="line">        <span class="keyword">return</span> subject;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSongService</span><span class="params">(SongService songService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.songService = songService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而使用依赖注入方法就可以简化代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> fm.douban.model.Song;</span><br><span class="line"><span class="keyword">import</span> fm.douban.model.Subject;</span><br><span class="line"><span class="keyword">import</span> fm.douban.service.SongService;</span><br><span class="line"><span class="keyword">import</span> fm.douban.service.SubjectService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectServiceImpl</span> <span class="keyword">implements</span> <span class="title">SubjectService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> SongService songService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//缓存所有专辑数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Subject&gt; subjectMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        Subject subject = <span class="keyword">new</span> Subject();</span><br><span class="line">        subject.setId(<span class="string">"s001"</span>);</span><br><span class="line">        <span class="comment">//... 省略初始化数据的过程</span></span><br><span class="line">        subjectMap.put(subject.getId(), subject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Subject <span class="title">get</span><span class="params">(String subjectId)</span> </span>&#123;</span><br><span class="line">        Subject subject = subjectMap.get(subjectId);</span><br><span class="line">        <span class="comment">//调用 SongService 获取专辑歌曲</span></span><br><span class="line">        List&lt;Song&gt; songs = songService.list(subjectId);</span><br><span class="line">        subject.setSongs(songs);</span><br><span class="line">        <span class="keyword">return</span> subject;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码改动的地方是删除setSongService方法，在SongService属性的声明上加上<code>@Autowired</code>注解。<strong>使用前提是当前的类是Spring Bean</strong></p>
+<h2 id="Spring-Resource"><a href="#Spring-Resource" class="headerlink" title="Spring Resource"></a>Spring Resource</h2><p>在Spring中，对文件的处理需要依靠Spring Resource      </p>
+<p>java工程中文件的几种情况：</p>
+<ol>
+<li>文件在电脑某个位置，比如：<code>d:/mywork/a.doc</code></li>
+<li>文件在工程目录下，比如：<code>mywork/toutiao.png</code></li>
+<li>文件在工程的<code>src/main/resources</code>目录下，就是Maven工程存放文件的地方</li>
+</ol>
+<p>第一种情况和第二种情况可以直接使用File进行文件的读写，但是第三种情况比较特殊，因为Maven执行package时，会把resources目录下的文件一起打包到jar包里，所以File读取不到。</p>
+<h3 id="classpath"><a href="#classpath" class="headerlink" title="classpath"></a>classpath</h3><p>在java内部中，将文件路径称为classpath，因此读取内部文件就是从classpath内读取，classpath指定的文件不能解析为File对象，但是可以解析为InputStream，可以借助javaIO读取。</p>
+<p>例如读取resources目录下的data.json文件，首先加入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 读取 classpath 的内容</span></span><br><span class="line">    InputStream in = Test.class.getClassLoader().getResourceAsStream("data.json");</span><br><span class="line">    <span class="comment">// 使用 commons-io 库读取文本</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      String content = IOUtils.toString(in, <span class="string">"utf-8"</span>);</span><br><span class="line">      System.out.println(content);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      <span class="comment">// IOUtils.toString 有可能会抛出异常，需要我们捕获一下</span></span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>InputStream in = Test.class.getClassLoader().getResourceAsStream(&quot;data.json&quot;);</code>这段代码的含义是从java运行的类加载器ClassLoader实例中查找文件，Test.class值当前Test.java编译后的java class文件。  </p>
+<p>Spring中定义了一个<code>org.springframework.core.io.Resource</code>类来封装文件，这个类的优势在于支持普通File，也支持classpath文件，并且在Spring中通过<code>org.springframework.core.io.ResourceLoader</code>服务来提供任意文件的读写，可以在任意的Spring Bean中引入ResourceLoader</p>
+<p>Spring读取文件例子：    </p>
+<p>首先建立FileService</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">FileService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">getContent</span><span class="params">(String name)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后是实现类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> fm.douban.service.FileService;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.Resource;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.ResourceLoader;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileServiceImpl</span> <span class="keyword">implements</span> <span class="title">FileService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ResourceLoader loader;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getContent</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream in = loader.getResource(name).getInputStream();</span><br><span class="line">            <span class="keyword">return</span> IOUtils.toString(in,<span class="string">"utf-8"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后是调用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FileService fileService = context.getBean(FileService<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">String content = fileService.getContent(<span class="string">"classpath:data/urls.txt"</span>);</span><br><span class="line">System.out.println(content);</span><br></pre></td></tr></table></figure>
+<p>也可以读取工程目录下的文件：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String content2 = fileService.getContent(<span class="string">"file:mywork/readme.md"</span>);</span><br><span class="line">System.out.println(content2);</span><br></pre></td></tr></table></figure>
+<p>还可以加载远程文件：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String content2 = fileService.getContent(<span class="string">"https://www.zhihu.com/question/34786516/answer/822686390"</span>);</span><br><span class="line">System.out.println(content2);</span><br></pre></td></tr></table></figure>
+<h2 id="Spring-Bean的生命周期"><a href="#Spring-Bean的生命周期" class="headerlink" title="Spring Bean的生命周期"></a>Spring Bean的生命周期</h2><p>Spring提供生命周期管理，提供类似实例的开始到结束的状态管理</p>
+<p><img src= "/img/loading.gif" data-src="https://style.youkeda.com/img/ham/course/j4/beaninstance.svg"></p>
+<p>上图表示了Spring Bean的Lifecycle，其中，关于Bean init，以下面代码为例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubjectServiceImpl</span> <span class="keyword">implements</span> <span class="title">SubjectService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@PostConstruct</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">      Subject subject = <span class="keyword">new</span> Subject();</span><br><span class="line">      subject.setId(<span class="string">"s001"</span>);</span><br><span class="line">      subject.setName(<span class="string">"成都"</span>);</span><br><span class="line">      subject.setMusician(<span class="string">"赵雷"</span>);</span><br><span class="line"></span><br><span class="line">      subjectMap.put(subject.getId(), subject);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在init方法上添加<code>@PostConstruct</code>注解，代表该方法在Spring Bean启动之后自动运行。</p>
 ]]></content>
       <categories>
         <category>JAVA</category>
