@@ -1216,26 +1216,18 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>ElementType.FIELD</code><br>表示可以使用在类的属性上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@ResponseBody</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ElementType.METHOD</code><br>表示可以使用在类的方法上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> WorkspaceService workspaceService;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>ElementType.PARAMETER</code><br>表示可以使用在类的参数上</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">(@RequestParam(<span class="string">"msg"</span>)</span>String msg) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span>+msg;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若要设置多个作用范围可以这样：</p>
+<p><code>@Target({ElementType.TYPE,ElementType.METHOD})</code></p>
 </li>
 </ul>
 </li>
-</ol>
-<pre><code>   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
- * `ElementType.METHOD`    
-   表示可以使用在类的方法上
-
-   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> WorkspaceService workspaceService;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
- * `ElementType.PARAMETER`    
-   表示可以使用在类的参数上
-
-   <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageServiceImpl</span> <span class="keyword">implements</span> <span class="title">MessageService</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">(@RequestParam(<span class="string">"msg"</span>)</span>String msg) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello "</span>+msg;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-  若要设置多个作用范围可以这样：
-
-  `@Target({ElementType.TYPE,ElementType.METHOD})`
-</code></pre><ol>
 <li><p><code>@Retention</code><br>用于声明注解的生命周期，就是在java编译运行的哪个环节有用。它的值定义在<code>java.lang.annotation.RetentionPolicy</code>枚举类中，有可选的三个值：</p>
 <ul>
 <li>SOURCE：纯注释作用</li>
