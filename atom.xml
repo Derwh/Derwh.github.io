@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://derwh.github.io/"/>
-  <updated>2020-12-02T15:18:15.639Z</updated>
+  <updated>2020-12-28T11:43:27.906Z</updated>
   <id>https://derwh.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL</title>
+    <link href="https://derwh.github.io/2020/12/28/MySQL/"/>
+    <id>https://derwh.github.io/2020/12/28/MySQL/</id>
+    <published>2020-12-28T12:44:42.036Z</published>
+    <updated>2020-12-28T11:43:27.906Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;CRUD&quot;&gt;&lt;a href=&quot;#CRUD&quot; class=&quot;headerlink&quot; title=&quot;CRUD&quot;&gt;&lt;/a&gt;CRUD&lt;/h1&gt;&lt;h2 id=&quot;表格的结构&quot;&gt;&lt;a href=&quot;#表格的结构&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="https://Derwh.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="MySQL" scheme="https://Derwh.github.io/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring</title>

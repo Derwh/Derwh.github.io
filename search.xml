@@ -1774,4 +1774,287 @@
         <tag>Spring</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MySQL</title>
+    <url>/2020/12/28/MySQL/</url>
+    <content><![CDATA[<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><h2 id="表格的结构"><a href="#表格的结构" class="headerlink" title="表格的结构"></a>表格的结构</h2><p>关系数据库的表格由以下元素组成：</p>
+<ul>
+<li>表由表名，行，列，列名构成</li>
+<li>表名是表的名称</li>
+<li>列名表示列的名字，列名不可以重复</li>
+<li>表格实质上是一个二维数组，行列都是从0开始</li>
+</ul>
+<h3 id="表名"><a href="#表名" class="headerlink" title="表名"></a>表名</h3><p>一般用英文小写字母来表示表名，多个单词使用<code>_</code>分割。在数据库中，将表名和字段名都小写，数据库操作语句都大写。</p>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><p>在数据库表中，每一列都是一个字段，第一行是字段名，下面都是字段的值，从第二行开始，对应序号为0。</p>
+<p>字段名不能重复，字段名用来约定字段的值，或者和其它的表产生联系。字段的值可以为<code>NULL</code>，但应尽量避免。</p>
+<h3 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h3><p>每一张数据库表都应有一个主键(primary key)，主键用来标识数据。其有以下特点：</p>
+<ul>
+<li>主键是一个特殊字段</li>
+<li>表格可以没有主键，但是最多只能有一个主键</li>
+<li>主键的值不能为<code>NULL</code>，必须有值</li>
+<li>主键的值必须是绝对唯一的</li>
+<li>一般使用主键和其它的表进行关联</li>
+<li>主键也可以由多个字段组合而成</li>
+</ul>
+<h3 id="SQL常用数据类型"><a href="#SQL常用数据类型" class="headerlink" title="SQL常用数据类型"></a>SQL常用数据类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VARCHAR</td>
+<td>可变的长字符串，类比JAVA中的String</td>
+</tr>
+<tr>
+<td>INT</td>
+<td>整形，类比JAVA中的int</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>浮点型，类比JAVA中的double，一般不加长度限制</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>时间类型，长度为0，格式为YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>长整型，类比JAVA中的long</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>将表格中的一行称为数据，可以通过主键或其它字段操作数据。</p>
+<h3 id="CRUD-1"><a href="#CRUD-1" class="headerlink" title="CRUD"></a>CRUD</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>英文</th>
+<th>中文</th>
+<th>SQL</th>
+<th>HTTP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CREATE</td>
+<td>创建</td>
+<td>INSERT(插入)</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>READ</td>
+<td>读取</td>
+<td>SELECT(查询)</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>更新</td>
+<td>UPDTAE</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除</td>
+<td>DELETE</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="创建表格"><a href="#创建表格" class="headerlink" title="创建表格"></a>创建表格</h2><p>创建时需要提供以下属性：</p>
+<ul>
+<li>表名</li>
+<li>字段名</li>
+<li>字段的数据类型</li>
+</ul>
+<p>创建表格示例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span>(</span><br><span class="line"><span class="string">`id`</span> <span class="built_in">INT</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="string">`mobile`</span> <span class="built_in">VARCHAR</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="string">`nickname`</span> <span class="built_in">VARCHAR</span>(<span class="number">40</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="string">`gmt_created`</span> datetime ,</span><br><span class="line"><span class="string">`gmt_modified`</span> datetime <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> ( <span class="string">`id`</span> )</span><br><span class="line">)<span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+<p>下面将分步拆解：</p>
+<h3 id="创建表格-1"><a href="#创建表格-1" class="headerlink" title="创建表格"></a>创建表格</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span>()</span><br></pre></td></tr></table></figure>
+<p>表示创建一张叫做<code>user</code>的表</p>
+<h3 id="创建字段"><a href="#创建字段" class="headerlink" title="创建字段"></a>创建字段</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">`id` INT(10)NOT NULL,</span><br><span class="line">`mobile` VARCHAR(11) NOT NULL,</span><br><span class="line">`nickname` VARCHAR(40) NOT NULL,</span><br><span class="line">`gmt_created` datetime ,</span><br><span class="line">`gmt_modified` datetime NOT NULL,</span><br></pre></td></tr></table></figure>
+<p>每个字段的语法结构一致，均为：字段名+数据类型+长度+是否为NULL。</p>
+<p><strong>注：INT最大值为2147483647，长度为10位，如果超过的话就要用BIGINT</strong></p>
+<h3 id="约定主键"><a href="#约定主键" class="headerlink" title="约定主键"></a>约定主键</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">PRIMARY KEY ( `id` )</span><br></pre></td></tr></table></figure>
+<p>表示这张表的主键是id这个字段，添加时应注意：</p>
+<ul>
+<li>主键必须是已经约定好的字段</li>
+<li>其主要作用是标识，所以最好由计算机自动生成</li>
+</ul>
+<p>有时可以将INT类型主键的语句改为：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">`id` INT UNSIGNED AUTO_INCREMENT</span><br></pre></td></tr></table></figure>
+<p>表示id从1开始自增。</p>
+<h3 id="设置存储引擎和编码方式"><a href="#设置存储引擎和编码方式" class="headerlink" title="设置存储引擎和编码方式"></a>设置存储引擎和编码方式</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ENGINE=InnoDB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+<h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><ul>
+<li>`` 这个符号用来过滤数据库关键字</li>
+<li>定义字段的语句间用<code>,</code>，最后一句后面没有</li>
+<li>SQL语句以<code>;</code>结束</li>
+</ul>
+<h3 id="删除表格"><a href="#删除表格" class="headerlink" title="删除表格"></a>删除表格</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> table_name</span><br></pre></td></tr></table></figure>
+<p><strong>删除不可逆，要慎重！</strong></p>
+<h2 id="插入语句-INSERT"><a href="#插入语句-INSERT" class="headerlink" title="插入语句(INSERT)"></a>插入语句(INSERT)</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name(field1,field2,...fieldN)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(value1,value2,...valueN);</span><br></pre></td></tr></table></figure>
+<p>意为向一条数据的若干个字段中插入相应的值，下面为具体的例子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span></span><br><span class="line">  <span class="string">`user`</span> (<span class="string">`id`</span>, <span class="string">`mobile`</span>, <span class="string">`nickname`</span>, <span class="string">`gmt_created`</span>)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">  (<span class="number">1</span>, <span class="string">'13426069530'</span>, <span class="string">'wh'</span>, <span class="keyword">now</span>());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>user是表名</li>
+<li>id，mobile等是字段名</li>
+<li>VALUES中的值按照相应字段的类型添加</li>
+<li>now()表示当前服务器时间</li>
+</ul>
+<h3 id="插入语句的简化"><a href="#插入语句的简化" class="headerlink" title="插入语句的简化"></a>插入语句的简化</h3><ol>
+<li>如果主键设置为自增，那么可以不插入主键和对应的值</li>
+<li>如果插入的是所有的字段，可以省略所有的字段，直接插入值，但是类型必须全部一致</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(value1,value2,...valueN);</span><br></pre></td></tr></table></figure>
+<p><strong>这两种简化不能同时使用</strong></p>
+<h3 id="批量插入数据"><a href="#批量插入数据" class="headerlink" title="批量插入数据"></a>批量插入数据</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(value1,value2,...valueN),</span><br><span class="line">(value1,value2,...valueN);</span><br></pre></td></tr></table></figure>
+<p>插入一条数据对应表格中的一行，当规定为NOT NULL的字段没有给到值的时候就会报错。</p>
+<h2 id="查询-SELECT"><a href="#查询-SELECT" class="headerlink" title="查询(SELECT)"></a>查询(SELECT)</h2><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1,field2,.... <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+<p>如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">id</span>,</span><br><span class="line">  hero_name</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc;</span><br></pre></td></tr></table></figure>
+<p>如要查询所有字段</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> timi_adc;</span><br></pre></td></tr></table></figure>
+<h3 id="WHERE子句"><a href="#WHERE子句" class="headerlink" title="WHERE子句"></a>WHERE子句</h3><p>可以通过限定条件来做到查询符合某一条件的数据，WHERE语句用来限定条件，类似if语句</p>
+<h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> condition;</span><br></pre></td></tr></table></figure>
+<p>condition是指条件，可以进行简单的逻辑判断，查询得到的数据是true。</p>
+<p>如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">  win_rate &gt; <span class="number">0.5</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="LIMIT子句"><a href="#LIMIT子句" class="headerlink" title="LIMIT子句"></a>LIMIT子句</h2><h3 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">LIMIT</span> parameter;</span><br></pre></td></tr></table></figure>
+<p>parameter是LIMIT语句的参数，几种情况如下：</p>
+<ul>
+<li><p>查询第x-y行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">*</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">timi_adc</span><br><span class="line"><span class="keyword">LIMIT</span></span><br><span class="line"><span class="number">5</span>, <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+<p>上例表示查询timi_adc数据库从第1行开始的6条数据</p>
+</li>
+<li><p>查询第0-x行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">*</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">timi_adc</span><br><span class="line"><span class="keyword">LIMIT</span></span><br><span class="line"><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>上例表示查询第1-5行的数据</p>
+</li>
+<li><p>查询第x行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">*</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">timi_adc</span><br><span class="line"><span class="keyword">LIMIT</span></span><br><span class="line"><span class="number">4</span>, <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>上例表示查询第5行的数据</p>
+</li>
+<li><p>和WHERE语句联合使用</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">*</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">appearance_rate &gt; <span class="number">0.1</span></span><br><span class="line"><span class="keyword">LIMIT</span></span><br><span class="line"><span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>LIMIT子句要写在WHERE子句之后。</p>
+</li>
+</ul>
+<h2 id="排序-ORDER-BY子句"><a href="#排序-ORDER-BY子句" class="headerlink" title="排序(ORDER BY子句)"></a>排序(ORDER BY子句)</h2><h3 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">ORDER</span> <span class="keyword">BY</span> field_name;</span><br></pre></td></tr></table></figure>
+<p>默认情况下，对于INT, DOUBLE来说，是从小到大。对于VARCHAR来说，是从字母A到Z，对于DATETIME而言，是从过去到现在。</p>
+<p>排序默认按照升序排序，关键词为ASC(一般不写)，加上关键词(DESC)，使排序变为降序。</p>
+<p>如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">  win_rate <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="更新-UPDATE"><a href="#更新-UPDATE" class="headerlink" title="更新(UPDATE)"></a>更新(UPDATE)</h2><h3 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名称 <span class="keyword">SET</span> 列名称 = 新值 <span class="keyword">WHERE</span> 列名称 = 某值</span><br></pre></td></tr></table></figure>
+<p><strong>UPDATE语句一定要加上WHERE子句，否则会对整列起作用</strong></p>
+<h2 id="删除-DELETE"><a href="#删除-DELETE" class="headerlink" title="删除(DELETE)"></a>删除(DELETE)</h2><h3 id="语法-6"><a href="#语法-6" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> Clause]</span><br></pre></td></tr></table></figure>
+<p><strong>务必加上WHERE子句，否则会删除整张表的数据，且不可恢复</strong></p>
+<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><h2 id="LIKE查询"><a href="#LIKE查询" class="headerlink" title="LIKE查询"></a>LIKE查询</h2><p>在SQL语句中使用LIKE子句可以实现模糊查询的效果</p>
+<h3 id="语法-7"><a href="#语法-7" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> condition <span class="keyword">LIKE</span> condition;</span><br></pre></td></tr></table></figure>
+<h3 id=""><a href="#" class="headerlink" title="%"></a>%</h3><p>LIKE子句中用%表示任意字符，如果没有使用任何的%则相当于=</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  hero_name <span class="keyword">LIKE</span> <span class="string">'%孙%'</span>;</span><br></pre></td></tr></table></figure>
+<p>上例表示查询名字中带有孙字的数据。</p>
+<p>同时%的位置决定了查询结果的不同，<code>%孙%</code>表示名称中含有孙，<code>孙%</code>表示名称以孙开头，<code>%孙</code>表示名称以孙结尾。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title="_"></a>_</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  hero_name <span class="keyword">LIKE</span> <span class="string">'_尚香'</span>;</span><br></pre></td></tr></table></figure>
+<p>上例表示查询名字为三个字，同时后两个字为尚香的数据。_表示一个任意字符。</p>
+<h2 id="AND-amp-OR"><a href="#AND-amp-OR" class="headerlink" title="AND&amp;OR"></a>AND&amp;OR</h2><p>WHERE语句需要多个条件的时候，需要用到AND和OR关键词</p>
+<h3 id="语法-8"><a href="#语法-8" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> conditionA <span class="keyword">AND</span>/<span class="keyword">OR</span> condtionB;</span><br></pre></td></tr></table></figure>
+<p>当多个AND或者OR的时候，需要在合适位置添加()，如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  win_rate &gt; <span class="number">0.5</span></span><br><span class="line">  <span class="keyword">OR</span> (</span><br><span class="line">    win_rate &lt; <span class="number">0.47</span></span><br><span class="line">    <span class="keyword">AND</span> win_rate &lt; <span class="number">0.51</span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<h2 id="IN-NOT-IN"><a href="#IN-NOT-IN" class="headerlink" title="IN/NOT IN"></a>IN/NOT IN</h2><p>IN子句也是一种精准查询</p>
+<h3 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> <span class="keyword">column</span> <span class="keyword">IN</span> (condtionA,condtionB);</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  fever <span class="keyword">IN</span> (<span class="string">'T0'</span>, <span class="string">'T3'</span>);</span><br></pre></td></tr></table></figure>
+<p>IN可以简化语法</p>
+<h3 id="NOT-IN-NOT-LIKE"><a href="#NOT-IN-NOT-LIKE" class="headerlink" title="NOT IN/NOT LIKE"></a>NOT IN/NOT LIKE</h3><h4 id="NOT-IN"><a href="#NOT-IN" class="headerlink" title="NOT IN"></a>NOT IN</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  fever <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="string">'T0'</span>);</span><br></pre></td></tr></table></figure>
+<p>表示fever是<code>T0</code>以外的数据。</p>
+<p>即使()中只有一个数据，()也不可以删除。</p>
+<h4 id="NOT-LIKE"><a href="#NOT-LIKE" class="headerlink" title="NOT LIKE"></a>NOT LIKE</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  hero_name <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'%孙%'</span>;</span><br></pre></td></tr></table></figure>
+<p>表示同LIKE相反的作用。</p>
+<h2 id="NULL值的处理"><a href="#NULL值的处理" class="headerlink" title="NULL值的处理"></a>NULL值的处理</h2><p>当查询语句的条件字段为NULL时，该命令可能无法正常工作。</p>
+<h3 id="NULL值的概念"><a href="#NULL值的概念" class="headerlink" title="NULL值的概念"></a>NULL值的概念</h3><p><code>NULL</code>以及<code>NOT NULL</code>，他们是MySQL字段的数据类型的属性，本身不属于任何数据类型，<code>NULL</code>值也不等于空值，空值是不占用存储空间的，但是<code>NULL</code>占用。</p>
+<h3 id="如何处理NULL值"><a href="#如何处理NULL值" class="headerlink" title="如何处理NULL值"></a>如何处理NULL值</h3><p>MySQL为处理NULL值提供了三种运算符：</p>
+<ol>
+<li><code>IS NULL</code>：当列的值是NULL时，返回true</li>
+<li><code>IS NOT NULL</code>：当列的值不为NULL时，返回true</li>
+<li>&lt;=&gt;：比较操作符，当左右两边的值均为NULL或者相等时，返回true</li>
+</ol>
+<p>不能使用<code>=NULL</code>或者<code>!=NULL</code>来查找<code>NULL</code>，<code>NULL = NULL</code>会返回<code>NULL</code>。</p>
+<h3 id="语法-9"><a href="#语法-9" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field_name1,field_name2</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> field_name2 <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>/<span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="MySQL字符串处理"><a href="#MySQL字符串处理" class="headerlink" title="MySQL字符串处理"></a>MySQL字符串处理</h1><h2 id="CONCAT函数"><a href="#CONCAT函数" class="headerlink" title="CONCAT函数"></a>CONCAT函数</h2><p>MySQL中使用CONCAT函数来处理字符串</p>
+<h3 id="语法-10"><a href="#语法-10" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name1,<span class="keyword">CONCAT</span>(column_name2,<span class="keyword">str</span>,column_name3),column_name4 <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+<p>对语法进行分析：</p>
+<ul>
+<li>语句基础是查询，结构是SELECT 列名 FROM 表名</li>
+<li>CONCAT函数可以拼接列名，也可以拼接字符串</li>
+<li>在使用CONCAT函数的时候可以同时查询其它的列</li>
+<li>CONCAT函数的参数用英文<code>,</code>隔开</li>
+</ul>
+<p><strong>如果拼接值中有一个为NULL，那么结果一律都是NULL</strong></p>
+<h3 id="配合WHERE语句查询"><a href="#配合WHERE语句查询" class="headerlink" title="配合WHERE语句查询"></a>配合WHERE语句查询</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">concat</span>(hero_name, <span class="string">'的胜率是'</span>, win_rate)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p>查询id是3的具体数据</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">concat</span>(hero_name, <span class="string">'的胜率是'</span>, win_rate) <span class="keyword">as</span> <span class="keyword">result</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">id</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<p>为拼接之后的字符串取一个别名，查询结果的列名将变成result</p>
+<h2 id="TRIM函数"><a href="#TRIM函数" class="headerlink" title="TRIM函数"></a>TRIM函数</h2><p>用户输入数据的时候可能会含有空格等不需要的字符，产生脏数据，为了保证数据格式的正确性，可以使用TRIM函数来清理数据</p>
+<h3 id="语法-11"><a href="#语法-11" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">TRIM (str)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="keyword">trim</span>(hero_name),</span><br><span class="line">  <span class="keyword">trim</span>(fever)</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  timi_adc</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  <span class="keyword">id</span> = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<p>TRIM函数只是改变查询结果，不改变原数据，改变原数据需要UPDATE/DELETE</p>
+<h3 id="语法拓展"><a href="#语法拓展" class="headerlink" title="语法拓展"></a>语法拓展</h3><p>TRIM函数也可以精准去除前面或者和后面的空格或者其它字符</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">TRIM( BOTH|LEADING|TRAILING removed_str FROM str);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>加上LEADING只去除前面的空格，加上TRAILING只去除后面的空格，默认BOTH</li>
+<li>TRIM可以删除指定的字符串，如果不加默认删除空格</li>
+</ul>
+<h3 id="REPLACE函数"><a href="#REPLACE函数" class="headerlink" title="REPLACE函数"></a>REPLACE函数</h3><p>TRIM只能删除两边的字符，不能删除中间的，可以使用REPLACE函数做到删除中间的字符，但是实用性不高，可以直接使用UPDATE修改</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name </span><br><span class="line"><span class="keyword">SET</span> colunm_name = </span><br><span class="line"><span class="keyword">REPLACE</span>(column_name,string_find,string_to_replace) </span><br><span class="line"><span class="keyword">WHERE</span> conditions;</span><br></pre></td></tr></table></figure>
+<h1 id="MySQL关联查询"><a href="#MySQL关联查询" class="headerlink" title="MySQL关联查询"></a>MySQL关联查询</h1><h2 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h2><h3 id="语法-12"><a href="#语法-12" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TableA <span class="keyword">LEFT</span>  <span class="keyword">JOIN</span></span><br><span class="line">  TableB</span><br><span class="line">  <span class="keyword">ON</span> condition;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>JOIN是关联查询的关键词，基础结构是TableA JOIN TableB，即A表和B表关联查询，LEFT表示左连接</li>
+<li>ON后面是关联条件</li>
+<li>左连接是指返回左表的所有数据，即使右表中没有匹配的数据(此时以NULL的形式匹配数据)</li>
+</ul>
+<h3 id="表结构的设计规范"><a href="#表结构的设计规范" class="headerlink" title="表结构的设计规范"></a>表结构的设计规范</h3><ul>
+<li>表必须要有主键</li>
+<li>一个字段只表示一种含义</li>
+<li>总是包含创建时间和修改时间这两个字段，且不包含其它的业务逻辑，类型使用DATETIME</li>
+<li>禁止使用复杂数据类型，如数组，自定义类型</li>
+<li>禁止使用物理外键，使用逻辑外键</li>
+<li>禁止物理删除，使用逻辑删除</li>
+</ul>
+<p>最后两点，对于逻辑外键，比如表b记录了表a的id，只需要在表b中添加一列a_id即可，然后通过程序来控制外键关系。对于逻辑删除，是指为数据添加某些标识表示其被删除，而不是直接将其从数据库中删除。</p>
+<h2 id="右连接"><a href="#右连接" class="headerlink" title="右连接"></a>右连接</h2><p>右连接是指返回右表的所有的数据，即使左表没有匹配的数据</p>
+<h3 id="语法-13"><a href="#语法-13" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TableA <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> </span><br><span class="line">  TableB </span><br><span class="line">  <span class="keyword">ON</span> condition;</span><br></pre></td></tr></table></figure>
+<h2 id="多表关联查询"><a href="#多表关联查询" class="headerlink" title="多表关联查询"></a>多表关联查询</h2><h3 id="语法-14"><a href="#语法-14" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  TableA <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> </span><br><span class="line">  TableB <span class="keyword">ON</span> conditionA</span><br><span class="line">  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span></span><br><span class="line">  TableB</span><br><span class="line">  <span class="keyword">ON</span> conditionB;</span><br></pre></td></tr></table></figure>
+<p><strong>实际上应用只会使用LEFT，而不会使用RIGHT</strong></p>
+<p><strong>多表查询的本质是A和B先关联查询，再和C表关联查询</strong></p>
+<h2 id="内连接-INNER"><a href="#内连接-INNER" class="headerlink" title="内连接(INNER)"></a>内连接(INNER)</h2><p>查询结果是多个表中同时符合某一条件的数据，得到的数据是内部共有的，如下图所示：</p>
+<p><img src= "/img/loading.gif" data-src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/d1/d1-5/A%26B.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt=""></p>
+<h3 id="语法-15"><a href="#语法-15" class="headerlink" title="语法"></a>语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  Table_A</span><br><span class="line">  <span class="keyword">INNER</span> <span class="keyword">JOIN</span> Table_B</span><br><span class="line"><span class="keyword">ON</span></span><br><span class="line">  Table_A.id = Table_B.student_id;</span><br></pre></td></tr></table></figure>
+<p>语法中的INNER可以删除</p>
+<h2 id="外连接的拓展"><a href="#外连接的拓展" class="headerlink" title="外连接的拓展"></a>外连接的拓展</h2><p>左连接的情况是这样的：</p>
+<p><img src= "/img/loading.gif" data-src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/d1/d1-5/v2-e492481e964541f2764fa5b529790bae_1440w.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt=""></p>
+<p>有时需要达到这样的效果：</p>
+<p><img src= "/img/loading.gif" data-src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/d1/d1-5/v2-dd0093c24ed334d24de6498247d22e6a_1440w.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt=""></p>
+<p>可以这样写：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  Table_A</span><br><span class="line">  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Table_B <span class="keyword">ON</span> Table_A.id = Table_B.student_id</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  Table_B.student_id <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="UNION关键字"><a href="#UNION关键字" class="headerlink" title="UNION关键字"></a>UNION关键字</h2><p>有时需要达到这样的效果：</p>
+<p><img src= "/img/loading.gif" data-src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/d1/d1-5/v2-b8160a25515c266b28c22f19a61f93d8_1440w.jpg?x-oss-process=image/resize,w_800/watermark,image_d2F0ZXJtYXNrLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzEwMA==,t_60,g_se,x_10,y_10" alt=""></p>
+<p>可以这样写：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  Table_A</span><br><span class="line">  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> Table_B</span><br><span class="line"><span class="keyword">ON</span></span><br><span class="line">  Table_A.id = Table_B.student_id</span><br><span class="line"><span class="keyword">UNION</span> <span class="keyword">DISTINCT</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  *</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  Table_A</span><br><span class="line">  <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> Table_B <span class="keyword">ON</span> Table_A.id=Table_B.student_id;</span><br></pre></td></tr></table></figure>
+<p><code>UNION</code>关键字将两个查询语句的结果合并，并且去重，<code>DISTINCT</code>可以省略。如果达到不去重的效果，可以加上<code>ALL</code>。</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
 </search>
