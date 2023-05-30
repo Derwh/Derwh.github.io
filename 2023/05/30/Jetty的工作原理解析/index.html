@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Jetty的工作原理解析 | Derwh</title><meta name="author" content="wangH"><meta name="copyright" content="wangH"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Jetty的工作原理解析目前最活跃也是很有前景的一个Servlet引擎，架构比较简单，可拓展性强且非常灵活的应用服务器。其有一个基本的数据模型：Handler，所有可以被扩展的组件都可以作为一个Handler添加到Server中，Jetty来做管理 基本架构核心由Server和Connector两个组件构成。整个Server组件是基于Handler容器工作的，类似Tomcat的Container容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetty的工作原理解析">
+<meta property="og:url" content="http://example.com/2023/05/30/Jetty%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Derwh">
+<meta property="og:description" content="Jetty的工作原理解析目前最活跃也是很有前景的一个Servlet引擎，架构比较简单，可拓展性强且非常灵活的应用服务器。其有一个基本的数据模型：Handler，所有可以被扩展的组件都可以作为一个Handler添加到Server中，Jetty来做管理 基本架构核心由Server和Connector两个组件构成。整个Server组件是基于Handler容器工作的，类似Tomcat的Container容">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/default_cover.jpg">
+<meta property="article:published_time" content="2023-05-30T09:42:00.000Z">
+<meta property="article:modified_time" content="2023-05-30T09:42:00.000Z">
+<meta property="article:author" content="wangH">
+<meta property="article:tag" content="读书笔记 深入分析JavaWeb技术内幕">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/default_cover.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2023/05/30/Jetty%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Jetty的工作原理解析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-30 17:42:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 下拉</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera"></i><span> 我的相册</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Derwh"><span class="site-name">Derwh</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 下拉</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa fa-camera"></i><span> 我的相册</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Jetty的工作原理解析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-30T09:42:00.000Z" title="发表于 2023-05-30 17:42:00">2023-05-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-30T09:42:00.000Z" title="更新于 2023-05-30 17:42:00">2023-05-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Jetty的工作原理解析"><a href="#Jetty的工作原理解析" class="headerlink" title="Jetty的工作原理解析"></a>Jetty的工作原理解析</h1><p>目前最活跃也是很有前景的一个Servlet引擎，架构比较简单，可拓展性强且非常灵活的应用服务器。其有一个基本的数据模型：Handler，所有可以被扩展的组件都可以作为一个Handler添加到Server中，Jetty来做管理</p>
+<h2 id="基本架构"><a href="#基本架构" class="headerlink" title="基本架构"></a>基本架构</h2><p>核心由Server和Connector两个组件构成。整个Server组件是基于Handler容器工作的，类似Tomcat的Container容器。Connector组件负责接受客户端的连接请求，并将请求分配给一个处理队列去执行</p>
+<p>除了上述两个组件外，还有一些可有可无的，可以在此之上做拓展。例如JMX，可以定义一些Mbean加到Server中，当Server启动时，这些Bean会一起工作</p>
+<p>整个Jetty的所有组件的生命周期管理都是基于观察者模板设计的，和Tomcat类似，每个组件都有一个观察者集合，当触发生命周期中的事件时会触发调用</p>
+<h3 id="Handler的体系结构"><a href="#Handler的体系结构" class="headerlink" title="Handler的体系结构"></a>Handler的体系结构</h3><p>其中主要有两种Handler类型，一种时HandlerWrapper，可以将一个Handler委托给另一个类去执行，例如将一个Handler加到Jetty中，那么就必须将这个Handler委托给Server去调用，配合ScopeHandler类可以拦截Handler的执行，再调用Handler之前或者之后来做另外的事情。</p>
+<p>另一个种是HandlerCollection，可以将多个Handler组装在一起，构成一个Handler链</p>
+<h2 id="启动过程"><a href="#启动过程" class="headerlink" title="启动过程"></a>启动过程</h2><p>Jetty的入口是Server类，其启动成功了就表示Jetty能提供服务了。Jetty所提供的服务由Server类启动时都调用了那些组件的start方法来决定，配置Jetty的过程就是将那些类配置到Server的过程</p>
+<p>Server启动其他组件的顺序：首先启动设置到Server的Handler，通常会有多个子Handler构成一个链，依次启动这个链上所有的Handler。然后会启动注册再Server上JMX的Mbean。最后启动Connector</p>
+<h2 id="接受请求"><a href="#接受请求" class="headerlink" title="接受请求"></a>接受请求</h2><p>其基于两种协议工作，一种是HTTP，一种是AJP。如果将Jetty集成到JBoss或者Apache，那么就可以让Jetty基于AJP模式工作</p>
+<h3 id="基于HTTP工作"><a href="#基于HTTP工作" class="headerlink" title="基于HTTP工作"></a>基于HTTP工作</h3><p>如果在前端没有其他Web服务器，那么Jetty应该基于HTTP工作</p>
+<p>Jetty创建接收连接的环境需要以下三个步骤：</p>
+<ol>
+<li>创建一个队列线程池，用于处理每个建立连接的任务，这个线程池可以由用户来指定，这个和Tomcat是类似的</li>
+<li>创建ServerSocket，用于准备接受客户端的Socket请求，以及客户端用来包装这个Socket的一些辅助类</li>
+<li>创建一个或者多个监听线程，用来监听访问端口是否有连接进来</li>
+</ol>
+<p>其中存在一个Acceptor线程，当其接收到Socket连接后，将为这个请求创建ConnectorEndPoint（以BIO的方式来处理连接请求），HttpConnector用来表示这个连接是一个HTTP连接，它会创建HttpParse来解析HTTP，并且创建符合HTTP的Request和Response对象。然后这个线程将会被交给队列线程去执行</p>
+<h3 id="基于AJP工作"><a href="#基于AJP工作" class="headerlink" title="基于AJP工作"></a>基于AJP工作</h3><p>通常一个Web服务站点的后端服务器不是将Java的应用服务器直接暴露给服务访问者，而是在应用服务器（如Jboss）的前面再加一个Web服务器（如Apache或者Nginx），做负载均衡、权限控制等</p>
+<p>这样常见的Web服务端架构下的Servlet引擎不需要解析和封装返回的HTTP，因为其的解析工作已经在Apache或者Nginx服务器上完成了，JBoss只需要基于更简单的AJP工作就行</p>
+<p>相比较HTTP，两者的逻辑几乎相同，不同的地方在：</p>
+<ol>
+<li>服务到Socket数据包时，如何让来转换这个数据包，按照HTTP的包格式来解析就是HttpParser，按照AJP类解析就是Ajp13Parserer，封装返回的数据也是如此</li>
+<li>让Jetty工作在AJP下，需要配置connector的实现类为Ajp13SocketConnector</li>
+</ol>
+<h3 id="基于NIO方式工作"><a href="#基于NIO方式工作" class="headerlink" title="基于NIO方式工作"></a>基于NIO方式工作</h3><p>Jetty建立客户端连接到处理客户端连接都是基于BIO的方式，除此之外，它也支持另一种NIO的处理方式，Jetty的默认connector就是NIO方式</p>
+<p>NIO工作的原型中存在一个Selector，当创建时，相当于一个观察者打开了一个Server端通道，把这个Server通道注册到观察者上并且指定监听事件，然后遍历这个观察者观察到的事件，取出感兴趣的事件处理</p>
+<p>在这里，不需要为每个被观察者创建一个线程来监控它随时发生的事件，而是将这些被观察者都注册到一个地方统一管理，再由它把出发的事件统一发送给感兴趣的程序模块</p>
+<p>其实，Jetty用一个线程来监听客户端的连接请求，当接收到请求后，把这个请求注册到Selector上，然后才以非阻塞的方式执行</p>
+<p>同样，真正共享一个线程的处理只是在监听不同连接的数据传送事件上，如有多个连接已经建立，传统方式时当没有数据传输时，线程是阻塞的，也就是一直在等待下一个数据的到来，而Niode处理方式是只有一个线程在等待所有连接的数据的到来，而当某个连接数据到来时，Jetty会将其分配给这个连接对应的处理线程去处理</p>
+<h2 id="处理请求"><a href="#处理请求" class="headerlink" title="处理请求"></a>处理请求</h2><p>当Jetty接收到一个请求后，就会将这个请求交给Server中注册的代理Handler去执行，至于如何执行注册的Handler有使用者进行规定，Jetty要做的就是调用你注册的第一个Handler的handle</p>
+<h2 id="与JBoss集成"><a href="#与JBoss集成" class="headerlink" title="与JBoss集成"></a>与JBoss集成</h2><p>Jetty作为一个Servlet引擎都是基于AJP工作的，所以它前面必然有一个服务器，在通常情况下与JBoss集成的可能性很大</p>
+<p>JBoss基于JMX的架构，所以只要是符合JMX规范的系统或者是框架都可以作为一个组件加到JBoss中作功能拓展</p>
+<p>Jetty集成到JBoss中需要集成JBoss的AbstractWebContainer类，这个类是现实的是模板模式，其中的抽象方法getDeployer需要子类去实现</p>
+<h2 id="与Tomcat的比较"><a href="#与Tomcat的比较" class="headerlink" title="与Tomcat的比较"></a>与Tomcat的比较</h2><p>Tomcat经过长时间的发展，已经广泛被市场接受和认可，相对于Jetty，其更加稳定成熟，不过Jetty也有自己的优点</p>
+<ol>
+<li>架构更为简单</li>
+<li>Tomcat在处理少数非常繁忙的连接上更有优势，也就是说连接的生命周期如果短，Tomcat的总体性能更高。而Jetty可以同时处理大量连接而且可以长时间保持这些连接，例如一些Web聊天应用非常适合用Jetty作为服务器</li>
+</ol>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E6%B7%B1%E5%85%A5%E5%88%86%E6%9E%90JavaWeb%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95/">读书笔记 深入分析JavaWeb技术内幕</a></div><div class="post_share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wangH</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Jetty%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">Jetty的工作原理解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">基本架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handler%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">Handler的体系结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">启动过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%97%E8%AF%B7%E6%B1%82"><span class="toc-number">1.3.</span> <span class="toc-text">接受请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EHTTP%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">基于HTTP工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EAJP%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.2.</span> <span class="toc-text">基于AJP工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ENIO%E6%96%B9%E5%BC%8F%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.3.3.</span> <span class="toc-text">基于NIO方式工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E8%AF%B7%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">处理请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8EJBoss%E9%9B%86%E6%88%90"><span class="toc-number">1.5.</span> <span class="toc-text">与JBoss集成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8ETomcat%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">1.6.</span> <span class="toc-text">与Tomcat的比较</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/30/Jetty%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" title="Jetty的工作原理解析"><img src="/img/default_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Jetty的工作原理解析"/></a><div class="content"><a class="title" href="/2023/05/30/Jetty%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/" title="Jetty的工作原理解析">Jetty的工作原理解析</a><time datetime="2023-05-30T09:42:00.000Z" title="发表于 2023-05-30 17:42:00">2023-05-30</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/default_cover.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2023 By wangH</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">welcome</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div></div></body></html>
